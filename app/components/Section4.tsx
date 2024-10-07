@@ -74,14 +74,7 @@ const ProjectsScroller = () => {
     }
   };
 
-  const handleScrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: -300, // Adjust this value for how much you want to scroll
-        behavior: 'smooth',
-      });
-    }
-  };
+
 
   return (
     <div className="text-white pt-72 py-12 px-6 md:px-16 lg:px-24">
@@ -104,9 +97,9 @@ const ProjectsScroller = () => {
           className="grid grid-flow-col gap-8 overflow-x-auto scrollbar-hide cursor-pointer"
         >
           {projects.map((project, index) => (
-           <Link href={"projects"}>
+           <Link href={"projects"} key={index}>
                <div
-              key={index}
+              
               className="group rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-w-[300px] lg:min-w-[400px]"
             >
               <div className="relative">

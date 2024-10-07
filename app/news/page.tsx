@@ -62,7 +62,7 @@ const NewsPage = () => {
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10'>
             {newsItems.map(item => (
               <Link key={item.id} href={item.link} className='flex flex-col md:flex-row bg-black p-3  hover:bg-gray-800 transition duration-200'>
-                <Image src={item.image} alt='news image' width={300} height={400} className='object-cover md:w-1/2' />
+                <Image src={item.image} fill alt='news image' width={300} height={400} className='object-cover md:w-1/2' />
                 <div className='texts pl-3 flex flex-col justify-between md:w-1/2'>
                   <div className='flex items-start justify-between'>
                     <h1 className='font-light text-white text-sm md:text-md'>{item.title}</h1>

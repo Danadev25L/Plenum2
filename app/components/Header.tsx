@@ -12,6 +12,7 @@ const Header = () => {
           src={HeaderImg}
           alt="Header Background"
           layout="fill"
+          fill
           objectFit="cover"
           quality={100}
         />
