@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { IoIosArrowDroprightCircle, IoIosArrowDropleftCircle } from 'react-icons/io';
+import { useRef, useEffect } from 'react';
+import { IoIosArrowDroprightCircle} from 'react-icons/io';
 import Image, { StaticImageData } from 'next/image';
 import image7 from "@/public/mini+slava+site+1 1.png";
 import image8 from "@/public/american+embassy+2 1.png";

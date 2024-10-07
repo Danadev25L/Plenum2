@@ -1,6 +1,6 @@
 import { motion, useAnimation } from 'framer-motion';
 import image1 from "@/public/alpana.jpg"
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
