@@ -31,7 +31,7 @@ const Section3 = () => {
   return (
     <div className="bg-black text-white min-h-screen p-4 sm:p-8 pt-24 sm:pt-52">
       <motion.h1
-        className="text-3xl sm:text-5xl font-light mb-6 sm:mb-8"
+        className="text-3xl sm:text-5xl font-mansory md:pl-44 mb-6 sm:mb-8"
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
         variants={animationVariants}
@@ -66,11 +66,11 @@ const Section3 = () => {
             animate={isVisible ? "visible" : "hidden"}
             variants={animationVariants}
           >
-            <h2 className="text-xl sm:text-2xl mb-3 sm:mb-4">BATH & WC</h2>
+            <h2 className="text-xl sm:text-2xl mb-3 sm:mb-4 font-mansory">BATH & WC</h2>
             <p className="text-xs sm:text-sm mb-3 sm:mb-4">
               The profound dialog between humans and nature translates into an interplay of glimpses and reflections, where humans and the earth, twin faces, reflect each other and collaborate in perfect synergy.
             </p>
-            <button style={{ border: "solid 1px" }} className="hover:bg-white hover:text-black text-white px-3 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-md">
+            <button className="custom-button hover:bg-white hover:text-black text-white border-[1px] border-white px-3 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm rounded-md">
               EXPLORE BATH & WC
             </button>
           </motion.div>

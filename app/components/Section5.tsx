@@ -5,7 +5,7 @@ import Image from 'next/image';
 import  image10 from "@/public/spain+5 1.png"
 import  image11 from "@/public/spain+5 2.png"
 
-const News = () => {
+const NewsSection = () => {
 
 
   const ref = useRef(null);
@@ -40,8 +40,8 @@ const News = () => {
         animate={isVisible ? "visible" : "hidden"}
         variants={textAnimation}
       >
-        <h1 className='text-3xl md:text-6xl font-light'>LATEST NEWS</h1>
-        <button style={{border:"1px solid white", fontSize:"10px"}} className='button hover:bg-white hover:text-black rounded-md h-max py-2 px-3 md:text-md'>
+        <h1 className='text-3xl md:text-6xl font-mansory'>LATEST NEWS</h1>
+        <button className='button custom-button border-[1px] border-white  hover:bg-white hover:text-black rounded-md h-max py-2 px-3 md:text-md'>
           READ ALL THE NEWS
         </button>
       </motion.div>
@@ -55,43 +55,43 @@ const News = () => {
       >
         <div className='item-1 flex md:w-1/2'>
           <div className='sm:w-[40%] h-full'>
-            <Image src={image10} alt='news image' width={300} height={400} />
+            <Image src={image10} alt='news image' className="w-max h-max" />
           </div>
           <div className='texts pl-3 flex flex-col justify-between'>
             <div className='flex items-start justify-between'>
-              <h1 className='font-light text-white text-sm md:text-xl'>
+              <h1 className='font-mansory text-white text-sm md:text-xl'>
                 VISIT OF MR. JUAN JOSÉ ESCOBAR STEMMANN (AMBASSADOR OF SPAIN IN IRAQ) TO OUR SHOWROOM
               </h1>
               <span className='cursor-pointer'>
                 <HiArrowRight size={16} color='gray'/>
               </span>
             </div>
-            <div className='flex text-start gap-2 items-center'>
-              <span className='rounded-xl bg-gray-500 px-2 text-xs md:text-md'>NEWS</span>
-              <span className='text-xs md:text-lg'>September 2024</span>
+            <div className='flex text-start gap-2 items-center pt-5'>
+              <span className='rounded-xl bg-gray-500 px-2 text-[10px]'>NEWS</span>
+              <span className='text-xs '>September 2024</span>
             </div>
-            <hr style={{border:"solid 1px gray"}} />
+            <hr className="border-[1px] border-gray-500" />
           </div>
         </div>
 
         <div className='item-2 flex md:w-1/2 object-contain'>
           <div className='sm:w-[40%]'>
-            <Image src={image11} alt='news image' width={300} height={400} />
+            <Image src={image11} alt='news image' className="w-max h-max" />
           </div>
-          <div className='texts pl-3 flex flex-col justify-between'>
+          <div className='texts pl-3 flex flex-col justify-between gap-'>
             <div className='flex items-start justify-between'>
-              <h1 className='font-light text-white text-sm md:text-xl'>
+              <h1 className='font-mansory text-white text-sm md:text-xl'>
                 VISIT OF MR. JUAN JOSÉ ESCOBAR STEMMANN (AMBASSADOR OF SPAIN IN IRAQ) TO OUR SHOWROOM
               </h1>
               <span className='cursor-pointer'>
                 <HiArrowRight size={16} color='gray'/>
               </span>
             </div>
-            <div className='flex text-start gap-2 items-center'>
-              <span className='rounded-xl bg-gray-500 px-2 text-xs md:text-md'>NEWS</span>
-              <span className='text-xs md:text-lg'>September 2024</span>
+            <div className='flex text-start gap-2 items-center pt-5'>
+              <span className='rounded-xl bg-gray-500 px-2 text-[10px]'>NEWS</span>
+              <span className='text-xs '>September 2024</span>
             </div>
-            <hr style={{border:"solid 1px gray"}} />
+            <hr className="border-[1px] border-gray-500" />
           </div>
         </div>
       </motion.div>
@@ -100,4 +100,4 @@ const News = () => {
 };
 
 
-export default News;
+export default NewsSection;

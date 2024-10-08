@@ -1,12 +1,12 @@
-import React from 'react'
-import Image from 'next/image'
-import HeaderImg from '@/public/header.png'
-import Navbar from './Navbar'
-
+import React from 'react';
+import Image from 'next/image';
+import HeaderImg from '@/public/header.png';
+import Navbar from './Navbar';
 
 const Header = () => {
   return (
     <div className="relative h-screen">
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src={HeaderImg}
@@ -17,22 +17,29 @@ const Header = () => {
           quality={100}
         />
       </div>
+
+      {/* Content */}
       <div className="relative z-10 h-full flex flex-col">
         <Navbar />
-        <div className="flex-grow flex flex-col items-center justify-center text-white">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center mb-6 max-w-2xl  pb-28">
-              Materials made with<br />
-              love, chosen for<br />
-              your style.
-            </h1>
 
-            <button className="custom-button">
+        {/* Main content in the center */}
+        <div className="flex-grow flex flex-col items-center justify-center text-white">
+          <h1 className="text-3xl font-mansory uppercase sm:text-4xl md:text-5xl lg:text-6xl text-center mb-6">
+            Materials made with<br />
+            love, chosen for<br />
+            your style.
+          </h1>
+        </div>
+
+        {/* Button at the bottom */}
+        <div className="flex justify-center mb-8">
+          <button className="custom-button cursor-pointer">
             EXPLORE PLENUM
           </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

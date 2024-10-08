@@ -34,14 +34,14 @@ const TileSection = () => {
   };
 
   return (
-    <div className="text-white min-h-screen flex flex-col items-center py-10">
+    <div className="text-white min-h-screen flex flex-col items-center py-20">
       {/* Title */}
       <motion.h1
         ref={ref}
         initial="hidden"
         animate={controls}
         variants={fadeInVariants}
-        className="text-5xl md:text-8xl font-light mb-14"
+        className="text-[43px] md:text-8xl font-mansory text-center mb-14"
       >
         TYPES OF TILES
       </motion.h1>
@@ -77,7 +77,7 @@ const TileSection = () => {
           <div className="w-[40%] sm:w-[44%] flex-shrink-0 relative overflow-hidden bg-cover bg-center h-[400px] sm:h-[500px] md:h-[650px]">
             <Image src={image4} alt='Floor Tile' layout="fill" objectFit="cover" className="w-full h-full" />
             <div className="absolute inset-0 flex flex-col items-center justify-end pb-6">
-              <h2 className="text-3xl md:text-6xl font-light">FLOOR <br /> TILES</h2>
+              <h2 className="text-3xl md:text-6xl font-mansory">FLOOR <br /> TILES</h2>
             </div>
           </div>
 

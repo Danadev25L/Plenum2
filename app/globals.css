@@ -7,13 +7,68 @@
   padding: 0;
 }
 
+/* Mansory Regular */
 @font-face {
   font-family: 'Mansory';
-  src: url('/fonts/MansoryRegular.woff2') format('woff2'),
-       url('/fonts/MansoryRegular.woff') format('woff');
-  font-weight: 400;
+  src: url('/fonts/Mansory.otf') format('opentype');
+  font-weight: normal;
   font-style: normal;
-  font-display: swap;
+}
+
+/* Mansory Bold */
+@font-face {
+  font-family: 'Mansory';
+  src: url('/fonts/MansoryBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Mansory Bold Oblique */
+@font-face {
+  font-family: 'Mansory';
+  src: url('/fonts/MansoryBoldOblique.otf') format('opentype');
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/* Mansory Medium */
+@font-face {
+  font-family: 'MansoryBold';
+  src: url('/fonts/MansoryMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Mansory Medium Oblique */
+@font-face {
+  font-family: 'Mansory';
+  src: url('/fonts/MansoryMediumOblique.otf') format('opentype');
+  font-weight: 500;
+  font-style: oblique;
+}
+
+/* Mansory Oblique */
+@font-face {
+  font-family: 'Mansory';
+  src: url('/fonts/MansoryOblique.otf') format('opentype');
+  font-weight: normal;
+  font-style: oblique;
+}
+
+/* Mansory Semi Bold */
+@font-face {
+  font-family: 'Mansory';
+  src: url('/fonts/MansorySemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Mansory Semi Bold Oblique */
+@font-face {
+  font-family: 'Mansory';
+  src: url('/fonts/MansorySemiBoldOblique.otf') format('opentype');
+  font-weight: 600;
+  font-style: oblique;
 }
 
 

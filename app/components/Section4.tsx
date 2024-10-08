@@ -79,12 +79,12 @@ const ProjectsScroller = () => {
   return (
     <div className="text-white pt-72 py-12 px-6 md:px-16 lg:px-24">
       {/* Header with title and right arrow */}
-      <div className='flex mb-20 items-center justify-between'>
-        <h1 className="text-left text-3xl md:text-7xl font-light">
+      <div className='flex mb-20 items-start justify-between'>
+        <h1 className="text-left text-2xl md:text-5xl font-mansory uppercase">
           Projects by Plenum Ciramica
         </h1>
         <span onClick={handleScrollRight} className='cursor-pointer'>
-          <IoIosArrowDroprightCircle size={40} />
+          <IoIosArrowDroprightCircle size={35}  />
         </span>
       </div>
 
@@ -113,7 +113,7 @@ const ProjectsScroller = () => {
                 />
               </div>
               <div className="text-left py-6">
-                <h2 className="text-3xl font-light mb-4">{project.title}</h2>
+                <h2 className="text-3xl font-mansory uppercase mb-4">{project.title}</h2>
                 <p className="text-white">{project.description}</p>
               </div>
             </div>

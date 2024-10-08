@@ -74,8 +74,8 @@ const Projects = () => {
   return (
       <div className='bg-black'>
         <Navbar />
-          <div className=" text-white min-h-screen px-8 pt-[120px] pb-56">
-          <h1 className="text-5xl md:text-6xl font-light mb-4">PROJECTS</h1>
+          <div className=" text-white min-h-screen px-8 pt-[120px] pb-72">
+          <h1 className="text-5xl md:text-6xl font-mansory mb-4">PROJECTS</h1>
           <p className="text-xl mb-8">(12) PROJECTS</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {projects.map((project) => (
@@ -91,7 +91,7 @@ const Projects = () => {
               </div>
             </div>
             <div className="mt-4 space-y-2">
-           <h3 className="text-xl font-bold">{project.title}</h3>
+           <h3 className="text-xl font-mansory uppercase">{project.title}</h3>
            <p className="text-sm text-gray-300">{project.description}</p>
          </div>
        </Link>

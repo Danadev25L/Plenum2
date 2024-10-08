@@ -55,7 +55,7 @@ const NewsPage = () => {
     <div className='bg-black text-white'>
       <div className='container px-2 md:px-20 pt-72'>
         <div className="translate-y-[-100px]">
-          <h1 className='text-5xl md:text-6xl font-light py-5 '>NEWS</h1>
+          <h1 className='text-5xl md:text-6xl font-mansory py-5 '>NEWS</h1>
           <span className=' md:text-lg text-md'>
             (6) ARTICLE
           </span>
@@ -65,7 +65,7 @@ const NewsPage = () => {
                 <Image src={item.image} fill alt='news image' width={300} height={400} className='object-cover md:w-1/2' />
                 <div className='texts pl-3 flex flex-col justify-between md:w-1/2'>
                   <div className='flex items-start justify-between'>
-                    <h1 className='font-light text-white text-sm md:text-md'>{item.title}</h1>
+                    <h1 className='font-mansory text-white text-sm md:text-md'>{item.title}</h1>
                     <span className='cursor-pointer'>
                       <HiArrowRight size={16} color='gray' />
                     </span>

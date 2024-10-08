@@ -42,7 +42,7 @@ const News = () => {
         animate={isVisible ? "visible" : "hidden"}
         variants={textAnimation}
       >
-        <h1 className='text-3xl md:text-6xl font-light'>LATEST NEWS</h1>
+        <h1 className='text-3xl md:text-6xl font-mansory'>LATEST NEWS</h1>
         <button style={{border:"1px solid white", fontSize:"10px"}} className='button hover:bg-white hover:text-black rounded-md h-max py-2 px-3 md:text-md'>
           READ ALL THE NEWS
         </button>
@@ -61,7 +61,7 @@ const News = () => {
             </div>
             <div className='texts pl-3 flex flex-col justify-between'>
               <div className='flex items-start justify-between'>
-                <h1 className='font-light text-white text-sm md:text-xl'>
+                <h1 className='font-mansory text-white text-sm md:text-xl'>
                   VISIT OF MR. JUAN JOSÉ ESCOBAR STEMMANN (AMBASSADOR OF SPAIN IN IRAQ) TO OUR SHOWROOM
                 </h1>
                 <span className='cursor-pointer'>
@@ -84,7 +84,7 @@ const News = () => {
           </div>
           <div className='texts pl-3 flex flex-col justify-between'>
             <div className='flex items-start justify-between'>
-              <h1 className='font-light text-white text-sm md:text-xl'>
+              <h1 className='font-mansory text-white text-sm md:text-xl'>
                 VISIT OF MR. JUAN JOSÉ ESCOBAR STEMMANN (AMBASSADOR OF SPAIN IN IRAQ) TO OUR SHOWROOM
               </h1>
               <span className='cursor-pointer'>
