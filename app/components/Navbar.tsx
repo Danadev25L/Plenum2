@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
@@ -8,9 +8,21 @@ import blackLogo from "@/public/logo_black.png";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState<string | boolean>(false); 
+  const [isHovered, setIsHovered] = useState<string | boolean>(false);
+  const [isMobile, setIsMobile] = useState(false); // New state for mobile detection
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    // Detect if the user is on a mobile device or tablet
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024); // Example threshold for mobile/tablet screens
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check on initial load
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const menuItems = [
     { label: "PROJECTS", href: "/projects" },
@@ -23,12 +35,11 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`
-        transition-all duration-700 ease-in-out
-        ${isHovered ? "md:bg-white md:text-black" : "bg-transparent text-white"}
-      `}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`transition-all duration-700 ease-in-out ${
+        isHovered && !isMobile ? "lg:bg-white lg:text-black" : "bg-transparent text-white"
+      }`}
+      onMouseEnter={() => !isMobile && setIsHovered(true)} // Only apply hover on non-mobile
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
       <div className="px-4 md:px-8">
         <div className="flex justify-between items-center h-16">
@@ -36,7 +47,7 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
               <Image
-                src={isHovered ? blackLogo : whiteLogo}
+                src={isHovered && !isMobile ? blackLogo : whiteLogo} // Mobile uses white logo
                 alt="logo"
                 width={100}
                 height={50}
@@ -50,10 +61,9 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className={` text-sm font-medium relative 
-                ${isHovered ? "text-black" : "text-white"}
-                ${isHovered == item.label ? "underline" : ""}
-                `}
+                className={` text-sm font-medium relative ${
+                  isHovered ? "text-black" : "text-white"
+                } ${isHovered === item.label ? "underline" : ""}`}
                 onMouseEnter={() => setIsHovered(item.label)}
                 onMouseLeave={() => setIsHovered("")}
               >
@@ -105,7 +115,7 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="block py-8 text-4xl hover:text-gray-700 text-black"
+                className="block py-8 text-3xl hover:text-gray-700 text-black"
                 onClick={toggleMenu}
               >
                 {item.label}
