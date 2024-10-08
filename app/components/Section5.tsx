@@ -40,11 +40,11 @@ const NewsSection = () => {
         animate={isVisible ? "visible" : "hidden"}
         variants={textAnimation}
       >
-        <h1 className='text-3xl md:text-6xl font-mansory'>LATEST NEWS</h1>
-        <button className='button custom-button border-[1px] border-white  hover:bg-white hover:text-black rounded-md h-max py-2 px-3 md:text-md'>
+        <h1 className='text-4xl md:text-6xl font-mansory uppercase'>LATEST NEWS</h1>
+        <button className='button custom-button border-[1px] border-white hover:bg-white hover:text-black rounded-md h-max py-2 w-max text-[10px] md:text-md'>
           READ ALL THE NEWS
         </button>
-      </motion.div>
+       </motion.div>
 
       <motion.div
         className='content flex flex-col md:flex-row py-4 gap-6'

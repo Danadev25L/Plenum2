@@ -32,7 +32,7 @@ const Header = () => {
         </div>
 
         {/* Button at the bottom */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center pb-24 md:pb-14">
           <button className="custom-button cursor-pointer">
             EXPLORE PLENUM
           </button>
