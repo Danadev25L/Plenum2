@@ -20,12 +20,12 @@ const SingleProject = () => {
           />
           </div>
           {/* textakan harse parchaka aleraya */}
-          <div className="texts flex flex-col px-4 py-16 md:py-32 md:px-28">
+          <div className="texts flex flex-col px-4 py-16 md:py-32 md:px-4 lg:px-28">
           <div className="firstPart flex flex-col md:flex-row md:gap-8">
             
             {/* Left side text */}
             <div className="md:w-1/2">
-              <h1 className="text-2xl md:text-5xl font-mansory uppercase mb-4 text-white">Communicate class, distinction and art</h1>
+              <h1 className="text-2xl md:text-3xl lg:text-5xl font-mansory uppercase mb-4 text-white">Communicate class, distinction and art</h1>
               <p className="text-white pt-6">These were the goals of the architectural project for the Nobili S.p.A. corporate headquarters. Square, pure volumes, enhanced externally by one of the spheres of the great sculptor Arnaldo Pomodoro. Laminam large slabs contribute to the overall grandeur, with three iconic collections used: IN-SIDE, Fokos, and Calce.</p>
             </div>
             
@@ -61,14 +61,14 @@ const SingleProject = () => {
 
           {/* Second part */}
           <div className="secondPart mt-16">
-            <h1 className="text-2xl md:text-5xl font-mansory uppercase mb-4 text-white ">Italian excellence</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-5xl font-mansory uppercase mb-4 text-white ">Italian excellence</h1>
             <p className="text-white pt-6 lg:w-1/2">Located in the province of Novara, Nobili S.p.A. is an Italian leader in the field of taps and bathroom fittings. The only European company in the sector with an entirely integrated production cycle, every year it dedicates significant resources to perfecting its production processes and adopting some of the most advanced technologies available. The Nobili Technology Centre, its Suno-based production site, is the most streamlined and efficient plant in the entire sector, its layout able to guarantee constant growth and extremely high quality standards with a very low environmental impact.</p>
           </div>
         </div>
 
 
           {/* images */}
-          <div className='flex justify-between gap-4 pb-72'>
+          <div className='flex justify-between gap-4 md:gap-14 pb-72'>
             <div className='content-center pl-6 md:pl-36 lg:pl-52'><Image src={image3} alt='imag3' /></div>
             <div ><Image  src={image2} alt='image2'/></div>
           </div>

@@ -33,7 +33,7 @@ const Header = () => {
 
         {/* Button at the bottom */}
         <div className="flex justify-center pb-24 md:pb-14">
-          <button className="custom-button cursor-pointer">
+          <button className="custom-button cursor-pointer md:text-xl lg:text-sm">
             EXPLORE PLENUM
           </button>
         </div>
