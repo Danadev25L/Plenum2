@@ -139,22 +139,3 @@ const ProjectSlider = () => {
 };
 
 export default ProjectSlider;
-
-const containerAnimation = {
-  hidden: { opacity: 0, y: 100 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      duration: 2, // Increased from 1 to 2
-      ease: "easeOut",
-      when: "beforeChildren",
-      staggerChildren: 0.1 // Increased from 0.2 to 0.4
-    } 
-  }
-};
-
-const itemAnimation = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.5, ease: "easeOut" } } // Increased from 0.8 to 1.5
-};
