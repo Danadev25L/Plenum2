@@ -70,7 +70,7 @@ const ContactForm: React.FC = () => {
         <Navbar />
             <div className="bg text-white min-h-screen px-8 pt-16 flex flex-col items-center">
       <div className="w-full max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8">CONTACT US</h1>
+        <h1 className="text-4xl md:text-5xl font-mansory mb-8">CONTACT US</h1>
         <p className="mb-8 text-sm">
           Fill in the contact form and specify the context and the project you require
           support for in as much detail as possible and you will receive targeted and

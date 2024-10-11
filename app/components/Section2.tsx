@@ -1,90 +1,132 @@
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
-import image2 from "@/public/imageD.png"
-import image3 from "@/public/imageD2.png"
-import image4 from "@/public/imageLL.png"
+import image2 from "@/public/imageD.png";
+import image3 from "@/public/imageD2.png";
+import image4 from "@/public/imageLL.png";
 
 const TileSection = () => {
   const controls = useAnimation();
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.3 });
+  const [imagesRef, imagesInView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
-  const controls2 = useAnimation();
-  const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [selectedTile, setSelectedTile] = useState("Floor");
+  const [isClicked, setIsClicked] = useState(false);
 
-  const controls3 = useAnimation();
-  const { ref: ref3, inView: inView3 } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const tiles = [
+    { type: "Floor", image: image4, title: "FLOOR TILES" },
+    { type: "Wall", image: image3, title: "WALL TILES" },
+    { type: "Roof", image: image2, title: "ROOF TILES" }
+  ];
 
   useEffect(() => {
     if (inView) {
-      controls.start('visible');
+      controls.start("visible");
     }
-    if (inView2) {
-      controls2.start('visible');
+  }, [controls, inView]);
+
+  useEffect(() => {
+    if (imagesInView) {
+      controls.start("imagesVisible");
     }
-    if (inView3) {
-      controls3.start('visible');
-    }
-  }, [controls, controls2, controls3, inView, inView2, inView3]);
+  }, [controls, imagesInView]);
+
+  const selectedTileIndex = tiles.findIndex(tile => tile.type === selectedTile);
+  const reorderedTiles = [
+    tiles[(selectedTileIndex + 2) % 3],
+    tiles[selectedTileIndex],
+    tiles[(selectedTileIndex + 1) % 3]
+  ];
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 1.5, delay: 0.5 } }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, y: 100 },
+    imagesVisible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 1.5, delay: 0.9 } 
+    }
+  };
+
+  const handleTileClick = (type: string) => {
+    setSelectedTile(type);
+    setIsClicked(true);
   };
 
   return (
-    <div className="text-white min-h-screen flex flex-col items-center py-20">
-      {/* Title */}
+    <div className="text-white min-h-screen flex flex-col items-center justify-center py-20 bg-black">
       <motion.h1
         ref={ref}
         initial="hidden"
         animate={controls}
         variants={fadeInVariants}
-        className="text-[43px] md:text-8xl font-mansory text-center mb-14"
+        className="text-4xl md:text-6xl lg:text-8xl font-mansory text-center mb-14"
       >
         TYPES OF TILES
       </motion.h1>
 
-      {/* Menu Buttons */}
       <motion.div
-        ref={ref2}
         initial="hidden"
-        animate={controls2}
+        animate={controls}
         variants={fadeInVariants}
-        className="flex justify-center space-x-4 pb-52"
+        className="flex justify-center space-x-4 pb-28"
       >
-        <button className="bg-teal-500 text-white py-2 px-4 rounded-full">Floor Tiles</button>
-        <button className="text-white py-2 px-4">Wall Tiles</button>
-        <button className="text-white py-2 px-4">Roof Tiles</button>
+        {tiles.map((tile) => (
+          <button
+            key={tile.type}
+            onClick={() => handleTileClick(tile.type)}
+            className={`py-2 px-4 rounded-full ${selectedTile === tile.type ? "bg-teal-500" : "bg-transparent border border-white"}`}
+          >
+            {tile.type} Tiles
+          </button>
+        ))}
       </motion.div>
 
-      {/* Tile Images Section */}
       <motion.div
-        ref={ref3}
+        ref={imagesRef}
         initial="hidden"
-        animate={controls3}
-        variants={fadeInVariants}
-        className="relative w-full overflow-hidden px-4"
+        animate={controls}
+        variants={imageVariants}
+        className="relative w-full overflow-hidden px-2 sm:px-3 md:px-4"
       >
-        <div className="flex flex-nowrap gap-6 md:gap-8 lg:gap-12 items-center">
-          {/* Roof Tile */}
-          <div className="w-[30%] sm:w-[28%] flex-shrink-0 relative overflow-hidden bg-cover bg-center h-[300px] sm:h-[400px] md:h-[500px] self-center">
-            <Image src={image2} alt='Roof Tile' layout="fill" objectFit="cover" className="w-full h-full" />
-          </div>
-
-          {/* Floor Tile */}
-          <div className="w-[40%] sm:w-[44%] flex-shrink-0 relative overflow-hidden bg-cover bg-center h-[400px] sm:h-[500px] md:h-[650px]">
-            <Image src={image4} alt='Floor Tile' layout="fill" objectFit="cover" className="w-full h-full" />
-            <div className="absolute inset-0 flex flex-col items-center justify-end pb-6">
-              <h2 className="text-3xl md:text-6xl font-mansory">FLOOR <br /> TILES</h2>
-            </div>
-          </div>
-
-          {/* Wall Tile */}
-          <div className="w-[30%] sm:w-[28%] flex-shrink-0 relative overflow-hidden bg-cover bg-center h-[300px] sm:h-[400px] md:h-[500px] self-center">
-            <Image src={image3} alt='Wall Tile' layout="fill" objectFit="cover" className="w-full h-full" />
-          </div>
+        <div className="flex flex-nowrap gap-6 sm:gap-8 md:gap-14 items-center justify-between">
+          {reorderedTiles.map((tile, index) => (
+            <motion.div
+              key={tile.type}
+              className={`flex-shrink-0 relative overflow-hidden bg-cover bg-center ${
+                index === 1 
+                  ? `h-[350px] sm:h-[450px] md:h-[600px] ${isClicked ? 'w-[36%] sm:w-[34%] md:w-[32%]' : 'w-[30%] sm:w-[28%] md:w-[26%]'} px-3 sm:px-4 md:px-5`
+                  : `h-[300px] sm:h-[400px] md:h-[500px] ${isClicked ? 'w-[30%] sm:w-[28%] md:w-[26%]' : 'w-[32%] sm:w-[30%] md:w-[28%]'}`
+              }`}
+              initial={{ opacity: 0.8, y: 100 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                scale: index === 1 ? (isClicked ? 1.05 : 1) : 1,
+                width: index === 1 
+                  ? (isClicked ? '36%' : '30%') 
+                  : (isClicked ? '30%' : '32%'),
+              }}
+              transition={{ duration: 0.5 }}
+            >
+              <Image src={tile.image} alt={`${tile.type} Tile`} layout="fill" objectFit="cover"/>
+              {index === 1 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.8 }}
+                className="absolute inset-0 flex flex-col items-center justify-end pb-6"
+              >
+                <h2 className="text-center text-3xl md:text-5xl md:pb-16 font-mansory">{tile.title}</h2>
+              </motion.div>
+              )}
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </div>

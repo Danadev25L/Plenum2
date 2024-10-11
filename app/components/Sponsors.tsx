@@ -16,16 +16,22 @@ const sponsors = [
   { id: 5, image: image5 },
   { id: 6, image: image6 },
   { id: 7, image: image7 },
-  { id: 7, image: image1 },
-  { id: 7, image: image2 },
-  { id: 7, image: image3 },
-  { id: 7, image: image4 },
-  { id: 7, image: image5 },
+  { id: 8, image: image1 },
+  { id: 9, image: image2 },
+  { id: 10, image: image3 },
+  { id: 11, image: image4 },
+  { id: 12, image: image5 },
+  { id: 13, image: image6 },
+  { id: 14, image: image7 },
+  { id: 15, image: image1 },
+  { id: 16, image: image2 },
+  { id: 17, image: image3 },
+  { id: 18, image: image4 },
 ]
 
 const Sponsors = () => {
   return (
-    <div className="relative overflow-hidden w-full py-10">
+    <div className="relative overflow-hidden w-full ">
       <style jsx>{`
         @keyframes scroll {
           0% {
@@ -39,9 +45,9 @@ const Sponsors = () => {
           animation: scroll 7s linear infinite;
         }
       `}</style>
-      <div className="flex animate-scroll items-center py-40">
+      <div className="flex animate-scroll items-center py-24 md:py-40">
         {[...sponsors, ...sponsors].map((sponsor, index) => (
-          <div key={`${sponsor.id}-${index}`} className="flex-shrink-0 mx-8">
+          <div key={`${sponsor.id}-${index}`} className="flex-shrink-0 mx-5 md:mx-8">
             <Image 
               src={sponsor.image} 
               alt={`Sponsor ${sponsor.id}`} 

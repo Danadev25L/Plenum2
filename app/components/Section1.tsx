@@ -1,44 +1,48 @@
-import { motion, useAnimation } from 'framer-motion';
+import { delay, motion, useAnimation } from 'framer-motion';
 import image1 from "@/public/se1.jpg"
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
-
-
-
 const Section1 = () => {
-
-
-
-  const controls = useAnimation();
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-
+  const controls1 = useAnimation();
   const controls2 = useAnimation();
+  const controls3 = useAnimation();
+
+  const { ref: ref1, inView: inView1 } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: ref3, inView: inView3 } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   useEffect(() => {
-    if (inView) {
-      controls.start('visible');
+    if (inView1) {
+      controls1.start('visible');
     }
     if (inView2) {
       controls2.start('visible');
     }
-  }, [controls, controls2, inView, inView2]);
+    if (inView3) {
+      controls3.start('visible');
+    }
+  }, [controls1, controls2, controls3, inView1, inView2, inView3]);
 
-  const fadeInVariants = {
+  const fadeInUpVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 3 } }
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, delay: custom }
+    })
   };
 
   return (
     <div className='container px-4 sm:px-8 md:px-16 lg:px-28 py-12 sm:py-16 md:py-20 lg:py-28 w-full flex flex-col gap-12 sm:gap-20 md:gap-28 lg:gap-36'>
       
       <motion.div
-        ref={ref}
+        ref={ref3}
         initial="hidden"
-        animate={controls}
-        variants={fadeInVariants}
+        animate={controls3}
+        variants={fadeInUpVariants}
+        custom={0.2}
         className='title w-full text-center'
       >
         <h1 className='text-4xl font-mansory uppercase sm:text-5xl md:text-6xl lg:text-8xl font-mansory w-full'>
@@ -54,7 +58,8 @@ const Section1 = () => {
         ref={ref2}
         initial="hidden"
         animate={controls2}
-        variants={fadeInVariants}
+        variants={fadeInUpVariants}
+        custom={0.6}
         className='about w-full md:w-[60%] lg:w-[35%] md:ml-auto pb-8 md:pb-12 lg:pb-20'
       >
         <div className='description flex flex-col gap-6 md:gap-8'>
@@ -64,9 +69,11 @@ const Section1 = () => {
       </motion.div>
 
       <motion.div
+        ref={ref1}
         initial="hidden"
-        animate="visible"
-        variants={fadeInVariants}
+        animate={controls1}
+        variants={fadeInUpVariants}
+        custom={0.9}
         className='image&text flex flex-col md:flex-row justify-between h-max gap-8 md:gap-12 pb-10'
       >
         <div className='text w-full md:w-[50%] flex flex-col gap-6 md:gap-10'>

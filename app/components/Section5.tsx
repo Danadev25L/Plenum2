@@ -4,6 +4,7 @@ import { HiArrowRight } from "react-icons/hi2";
 import Image from 'next/image';
 import  image10 from "@/public/spain+5 1.png"
 import  image11 from "@/public/spain+5 2.png"
+import Link from "next/link";
 
 const NewsSection = () => {
 
@@ -33,17 +34,19 @@ const NewsSection = () => {
 
 
   return (
-    <div className='container flex flex-col px-2 md:px-20 pt-72'>
+    <div className='container flex flex-col px-2 md:px-20 pt-36 md:pt-52'>
       <motion.div
-        className='title flex justify-between pb-14'
+        className='title flex justify-between '
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
         variants={textAnimation}
       >
         <h1 className='text-4xl md:text-6xl font-mansory uppercase'>LATEST NEWS</h1>
-        <button className='button custom-button border-[1px] border-white hover:bg-white hover:text-black rounded-md h-max py-2 w-max text-[10px] md:text-md'>
+        <Link href="/news">
+        <button className='button custom-button border-[1px] border-white hover:bg-white hover:text-black rounded-md h-max py-1 md:py-2 px-2 md:px-4 w-max text-[8px] md:text-md'>
           READ ALL THE NEWS
         </button>
+        </Link>
        </motion.div>
 
       <motion.div
