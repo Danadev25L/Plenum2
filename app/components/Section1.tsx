@@ -45,7 +45,7 @@ const Section1 = () => {
         custom={0.2}
         className='title w-full text-center'
       >
-        <h1 className='text-[32px] leading-none uppercase  md:text-6xl lg:text-8xl font-mansory w-full'>
+        <h1 className='text-[32px] leading-none uppercase  md:text-5xl lg:text-8xl font-mansory w-full'>
           SURFACES INSPIRED 
           <br />
           BY <span className='text-teal-500'>NATURE</span>, WHICH 
