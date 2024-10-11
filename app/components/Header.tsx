@@ -14,7 +14,7 @@ const Header = () => {
           layout="fill"
           fill
           objectFit="cover"
-          quality={100}
+
         />
       </div>
 
