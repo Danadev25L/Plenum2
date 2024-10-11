@@ -1,6 +1,6 @@
 "use client"
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import image2 from "@/public/imageD.png";
