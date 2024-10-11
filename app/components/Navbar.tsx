@@ -109,13 +109,13 @@ const Navbar: React.FC = () => {
 
           <div className="flex-grow px-4 py-6 overflow-y-auto">
             <Link href="/">
-              <h2 className="text-4xl text-gray-700 pb-32">HOME</h2>
+              <h2 className="text-4xl md:text-7xl text-gray-800 pb-32 md:pb-36">HOME</h2>
             </Link>
             {menuItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="block pb-8 text-4xl hover:text-gray-700 text-black"
+                className="block pb-8 md:pb-12 text-4xl md:text-7xl hover:text-gray-700 text-black"
                 onClick={toggleMenu}
               >
                 {item.label}
@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
             {/* Contact in Mobile Menu */}
             <Link
               href="/contact"
-              className="block text-4xl hover:text-gray-700 text-black"
+              className="block text-4xl md:text-7xl hover:text-gray-700 text-black"
               onClick={toggleMenu}
             >
               CONTACT

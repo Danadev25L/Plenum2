@@ -44,7 +44,7 @@ const Section3 = () => {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen p-4 sm:p-8 pt-24 sm:pt-52">
+    <div className="bg-black text-white min-h-screen px-4 sm:p-8 pt-0 md:pt-36 sm:pt-52">
       <motion.h1
         className="text-3xl sm:text-5xl font-mansory md:pl-44 mb-6 sm:mb-8"
         initial="hidden"

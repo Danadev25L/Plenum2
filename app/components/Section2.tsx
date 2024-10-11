@@ -59,7 +59,7 @@ const TileSection = () => {
   };
 
   return (
-    <div className="text-white min-h-screen flex flex-col items-center justify-center py-20 bg-black">
+    <div className="text-white min-h-screen flex flex-col items-center justify-center pb-20 pt-0 md:py-20 bg-black">
       <motion.h1
         ref={ref}
         initial="hidden"
@@ -100,8 +100,8 @@ const TileSection = () => {
               key={tile.type}
               className={`flex-shrink-0 relative overflow-hidden bg-cover bg-center ${
                 index === 1 
-                  ? `h-[350px] sm:h-[450px] md:h-[600px] ${isClicked ? 'w-[36%] sm:w-[34%] md:w-[32%]' : 'w-[30%] sm:w-[28%] md:w-[26%]'} px-3 sm:px-4 md:px-5`
-                  : `h-[300px] sm:h-[400px] md:h-[500px] ${isClicked ? 'w-[30%] sm:w-[28%] md:w-[26%]' : 'w-[32%] sm:w-[30%] md:w-[28%]'}`
+                  ? `h-[350px] sm:h-[450px] md:h-[600px] w-[42%] sm:w-[36%] md:w-[32%] px-3 sm:px-4 md:px-5`
+                  : `h-[300px] sm:h-[400px] md:h-[500px] w-[28%] sm:w-[30%] md:w-[28%]`
               }`}
               initial={{ opacity: 0.8, y: 100 }}
               animate={{ 
@@ -109,8 +109,8 @@ const TileSection = () => {
                 y: 0,
                 scale: index === 1 ? (isClicked ? 1.05 : 1) : 1,
                 width: index === 1 
-                  ? (isClicked ? '36%' : '30%') 
-                  : (isClicked ? '30%' : '32%'),
+                  ? (isClicked ? '42%' : '36%') 
+                  : (isClicked ? '28%' : '30%'),
               }}
               transition={{ duration: 0.5 }}
             >
