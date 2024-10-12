@@ -10,7 +10,7 @@ const SingleNews = () => {
   return (
     <div className='bg-black'>
       <Navbar />
-      <div className="text-white min-h-screen px-4 md:pt-[120px] sm:p-8 flex justify-center">
+      <div className="text-white min-h-screen px-4 pt-16 md:pt-[120px] sm:p-8 flex justify-center">
         <div className="max-w-full sm:max-w-[665px] space-y-6 sm:space-y-8">
           <h1 className="text-2xl md:text-4xl font-mansory text-center mb-4 w-full sm:w-[665px]">
             VISIT OF MR JUAN JOSÉ ESCOBAR STEMMANN (AMBASSADOR OF SPAIN IN IRAQ) TO OUR SHOWROOM

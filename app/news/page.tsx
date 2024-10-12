@@ -57,7 +57,7 @@ const NewsPage = ({ itemsToShow = newsItems.length, showNavbar = true, showTitle
   return (
     <div className='bg-black text-white'>
       {showNavbar && <div className='pb-28'> <Navbar /></div> }
-      <div className={`text-white  px-8 pt-24 pb-${paddingButton}`}>
+      <div className={`text-white px-8 pt-16 md:pt-24 pb-${paddingButton}`}>
         <div className="translate-y-[-100px]">
           {showTitle && (
             <>

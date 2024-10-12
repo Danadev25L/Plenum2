@@ -11,7 +11,7 @@ const SingleProject = () => {
     <div className='bg-black'>
       <Navbar />
         <div className='overflow-hidden'>
-          <div className='image&title flex flex-col px-4 md:px-8 pt-[120px] '>
+          <div className='image&title flex flex-col px-4 md:px-8 pt-16 md:pt-[120px] '>
           <h1 className="text-3xl md:text-6xl font-mansory mb-4 text-white">MUHANAD CARS IN <br /> SULAYMANIYAH</h1>
           <Image 
             src={image1}

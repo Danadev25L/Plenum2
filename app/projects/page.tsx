@@ -74,7 +74,7 @@ const Projects = () => {
   return (
       <div className='bg-black'>
         <Navbar />
-          <div className=" text-white min-h-screen px-8 pt-[120px] pb-72">
+          <div className=" text-white min-h-screen px-8 pt-16 md:pt-[120px] pb-72">
           <h1 className="text-5xl md:text-6xl font-mansory mb-4">PROJECTS</h1>
           <p className="text-xl mb-8">(12) PROJECTS</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
