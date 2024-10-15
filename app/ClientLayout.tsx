@@ -24,7 +24,7 @@ export default function ClientLayout({
     const locomotiveScroll = new LocomotiveScroll({
       el: scrollRef.current,
       smooth: true,
-      multiplier: isMobile ? 1.4 : 0.7,
+      multiplier: isMobile ? 1.4 : 0.73,
       class: "is-revealed",
       smartphone: {
         smooth: true,
