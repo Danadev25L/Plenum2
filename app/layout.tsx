@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="overflow-hidden">
+      <body className="h-max">
         <SmoothScrollProvider>
           <main >{children}</main>
           <Footer />
