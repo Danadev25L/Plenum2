@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { IoIosArrowDroprightCircle} from 'react-icons/io';
+import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import Image, { StaticImageData } from 'next/image';
 import image7 from "@/public/mini+slava+site+1 1.png";
 import image8 from "@/public/american+embassy+2 1.png";
@@ -43,11 +43,14 @@ const projects: Project[] = [
 const ProjectSlider = () => {
   const [isVisible, setIsVisible] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
+  const [interpolatedPosition, setInterpolatedPosition] = useState({ x: -100, y: -100 });
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       handleScrollRight();
-    }, 2000); 
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -60,7 +63,7 @@ const ProjectSlider = () => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.6  }
+      { threshold: 0.6 }
     );
 
     if (scrollContainerRef.current) {
@@ -69,6 +72,24 @@ const ProjectSlider = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const interpolate = () => {
+      setInterpolatedPosition((prev) => ({
+        x: prev.x + (cursorPosition.x - prev.x) * 0.1,
+        y: prev.y + (cursorPosition.y - prev.y) * 0.1,
+      }));
+      animationFrameId = requestAnimationFrame(interpolate);
+    };
+
+    interpolate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [cursorPosition]);
 
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
@@ -80,15 +101,22 @@ const ProjectSlider = () => {
             left: 0,
             behavior: 'smooth',
           });
-        }, 500); 
+        }, 1000);
       } else {
         scrollContainerRef.current.scrollBy({
-          left: 300, 
+          left: 300,
           behavior: 'smooth',
         });
       }
     }
   };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setCursorPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
 
   return (
     <div 
@@ -101,19 +129,32 @@ const ProjectSlider = () => {
           Projects by Plenum Ciramica
         </h1>
         <span onClick={handleScrollRight} className='cursor-pointer'>
-          <IoIosArrowDroprightCircle size={35}  />
+          <IoIosArrowDroprightCircle size={35} />
         </span>
+      </div>
+
+      <div 
+        className={`custom-cursor ${isHovering ? 'visible' : 'invisible'}`}
+        style={{
+          left: `${interpolatedPosition.x}px`,
+          top: `${interpolatedPosition.y}px`,
+        }}
+      >
+        DISCOVER
       </div>
 
       <div className="relative">
         <div
           ref={scrollContainerRef}
-          className="grid grid-flow-col gap-8 overflow-x-auto scrollbar-hide cursor-pointer"
+          className="grid grid-flow-col gap-8 overflow-x-auto scrollbar-hide"
         >
           {projects.map((project, index) => (
             <Link href={"projects"} key={index}>
               <div
-                className="group rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-w-[300px] lg:min-w-[400px]"
+                className="group overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-w-[300px] lg:min-w-[400px] cursor-none"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onMouseMove={handleMouseMove}
               >
                 <div className="relative">
                   <Image

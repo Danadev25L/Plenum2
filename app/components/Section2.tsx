@@ -40,16 +40,17 @@ const TileSection = () => {
   ];
 
   const fadeInVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.5, delay: 0.5 } }
+    hidden: { opacity: 0, y: 150 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.4, delay: 0.4 } }
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, y: 100 },
+    hidden: { opacity: 0, scale: 0.8 , y: 160 },
     imagesVisible: { 
       opacity: 1, 
-      y: 0, 
-      transition: { duration: 1.5, delay: 0.9 } 
+      y:0,
+      scale: 1, 
+      transition: { duration: 1.3, ease: "easeOut" , delay: 0.1} 
     }
   };
 
@@ -103,23 +104,20 @@ const TileSection = () => {
                   ? `h-[350px] sm:h-[450px] md:h-[600px] w-[42%] sm:w-[36%] md:w-[32%] px-3 sm:px-4 md:px-5`
                   : `h-[300px] sm:h-[400px] md:h-[500px] w-[28%] sm:w-[30%] md:w-[28%]`
               }`}
-              initial={{ opacity: 0.8, y: 100 }}
+              initial={{ opacity: 0.8, scale: 0.9 }}
               animate={{ 
                 opacity: 1, 
-                y: 0,
-                scale: index === 1 ? (isClicked ? 1.05 : 1) : 1,
-                width: index === 1 
-                  ? (isClicked ? '42%' : '36%') 
-                  : (isClicked ? '28%' : '30%'),
+                scale: index === 1 ? 1.05 : 1,
+                transition: { duration: 0.9, ease: "easeInOut" }
               }}
-              transition={{ duration: 0.5 }}
+              whileHover={{ scale: index === 1 ? 1.05 : 1.02, transition: { duration: 0.3 } }}
             >
               <Image src={tile.image} alt={`${tile.type} Tile`} layout="fill" objectFit="cover"/>
               {index === 1 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="absolute inset-0 flex flex-col items-center justify-end pb-6"
               >
                 <h2 className="text-center text-3xl md:text-5xl md:pb-16 font-mansory">{tile.title}</h2>
