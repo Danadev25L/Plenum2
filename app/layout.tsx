@@ -37,6 +37,7 @@ export default function RootLayout({
     });
 
     // Cleanup function
+    
     return () => {
       locomotiveScroll.destroy();
       window.removeEventListener("resize", () => {
