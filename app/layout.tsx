@@ -14,13 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="overflow-hidden">
         <SmoothScrollProvider>
           <main >{children}</main>
           <Footer />
         </SmoothScrollProvider>
       </body>
-      
     </html>
   );
 }

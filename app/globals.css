@@ -14,7 +14,6 @@ html {
 
 body {
   overflow-y: scroll;
-  flex-grow: 1;
 }
 
 /* Optional: Custom scrollbar styling */
