@@ -1,7 +1,7 @@
 "use client";
 import "./globals.css";
 import Footer from "./components/Footer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef} from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 
@@ -37,7 +37,7 @@ export default function RootLayout({
     });
 
     // Cleanup function
-    
+
     return () => {
       locomotiveScroll.destroy();
       window.removeEventListener("resize", () => {
