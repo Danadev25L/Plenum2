@@ -1,4 +1,4 @@
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import image5 from "@/public/image 6.png";
 import image6 from "@/public/shoresh5 1.png";

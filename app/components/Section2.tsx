@@ -12,8 +12,7 @@ const TileSection = () => {
   const [imagesRef, imagesInView] = useInView({ triggerOnce: false, threshold: 0.1 });
 
   const [selectedTile, setSelectedTile] = useState("Floor");
-  const [isClicked, setIsClicked] = useState(false);
-
+ 
   const tiles = [
     { type: "Floor", image: image4, title: "FLOOR TILES" },
     { type: "Wall", image: image3, title: "WALL TILES" },
@@ -56,8 +55,7 @@ const TileSection = () => {
 
   const handleTileClick = (type: string) => {
     setSelectedTile(type);
-    setIsClicked(true);
-  };
+   };
 
   return (
     <div className="text-white min-h-screen flex flex-col items-center justify-center pb-20 pt-0 md:py-20 bg-black">
