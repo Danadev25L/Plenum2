@@ -14,7 +14,7 @@ export default function SmoothScrollProvider({
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 775);
+      setIsMobile(window.innerWidth < 768);
     };
 
     checkMobile();
@@ -29,7 +29,7 @@ export default function SmoothScrollProvider({
     const locomotiveScroll = new LocomotiveScroll({
       el: scrollRef.current,
       smooth: true,
-      multiplier: isMobile ? 1.3 : 0.7,
+      multiplier: isMobile ? 1.4 : 0.75,
       class: "is-revealed",
       smartphone: {
         smooth: true,

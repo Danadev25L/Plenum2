@@ -32,15 +32,15 @@ const Section1 = () => {
     },
   };
   const fadeInUpVariants3 = {
-    hidden: { opacity: 0, y: 250 }, // start further from the bottom
+    hidden: { opacity: 0, y: 250 }, 
     visible: {
       opacity: 1,
-      y: 0, // move to the top
+      y: 0, 
       transition: { duration: 1.3  , delay:0.1}
     },
   };
   const fadeInUpVariants2 = {
-    hidden: { opacity: 0, y: 160 }, // start further from the bottom
+    hidden: { opacity: 0, y: 160 }, 
     visible: {
       opacity: 1,
       y: 0, // move to the top

@@ -44,12 +44,12 @@ const TileSection = () => {
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 , y: 160 },
+    hidden: { opacity: 0, scale: 0.8 , y: 200 },
     imagesVisible: { 
       opacity: 1, 
       y:0,
       scale: 1, 
-      transition: { duration: 1.3, ease: "easeOut" , delay: 0.1} 
+      transition: { duration: 1, ease: "easeOut" , delay: 0.15} 
     }
   };
 
