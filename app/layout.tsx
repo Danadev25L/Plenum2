@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 const SmoothScrollProvider = dynamic(() => import("./components/SmoothScrollProvider"), {
   ssr: false,
 });
-
 export default function RootLayout({
   children,
 }: {
@@ -14,9 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="h-max">
+      <body>
         <SmoothScrollProvider>
-          <main >{children}</main>
+          <div style={{ flex: 1 }}>
+            <main>{children}</main>
+          </div>
           <Footer />
         </SmoothScrollProvider>
       </body>

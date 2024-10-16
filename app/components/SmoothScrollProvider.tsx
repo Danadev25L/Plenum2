@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
@@ -13,7 +14,7 @@ export default function SmoothScrollProvider({
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 790); // Adjust this threshold as needed
+      setIsMobile(window.innerWidth < 775);
     };
 
     checkMobile();
@@ -28,7 +29,7 @@ export default function SmoothScrollProvider({
     const locomotiveScroll = new LocomotiveScroll({
       el: scrollRef.current,
       smooth: true,
-      multiplier: isMobile ? 1.5 : 0.7,
+      multiplier: isMobile ? 1.3 : 0.7,
       class: "is-revealed",
       smartphone: {
         smooth: true,
@@ -47,12 +48,15 @@ export default function SmoothScrollProvider({
 
     window.addEventListener("resize", handleResize);
 
-    // Cleanup LocomotiveScroll instance
     return () => {
       locomotiveScroll.destroy();
       window.removeEventListener("resize", handleResize);
     };
   }, [isMobile]);
 
-  return <div ref={scrollRef}>{children}</div>;
-}
+  return (
+    <div data-scroll-container ref={scrollRef} style={{ minHeight: '100vh' }}>
+      {children}
+    </div>
+  );
+  }
