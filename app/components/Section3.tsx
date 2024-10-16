@@ -28,7 +28,7 @@ const Section3 = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
   };
   const animationVariants2 = {
-    hidden: { opacity: 0, y: 160 },
+    hidden: { opacity: 0, y: 200 },
     visible: { opacity: 1, y: 0, transition: { duration: 1.3, ease: "easeOut" , delay:0.2 } },
   };
   const animationVariants3 = {
