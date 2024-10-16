@@ -143,12 +143,11 @@ body, html {
   font-weight: bold;
   color: white;
   text-transform: uppercase;
-  transition: transform 0.1s ease-out; /* Smooth transition */
+  transform: translate(0%, 50%); /* Center the cursor */
+  transition: transform 0.1s ease-out;
 }
 
 .cursor-none {
   cursor: none;
 }
-
-
 

@@ -63,7 +63,7 @@ const ProjectSlider = () => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.6 }
+      { threshold: 1 }
     );
 
     if (scrollContainerRef.current) {
@@ -101,7 +101,7 @@ const ProjectSlider = () => {
             left: 0,
             behavior: 'smooth',
           });
-        }, 1000);
+        }, 2000);
       } else {
         scrollContainerRef.current.scrollBy({
           left: 300,
