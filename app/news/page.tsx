@@ -50,12 +50,12 @@ const newsItems = [
   },
 ];
 
-const NewsPage = ({ itemsToShow = newsItems.length, showTitle = true, paddingButton = 40 , paddingTop = 56}) => {
+const NewsPage = ({ itemsToShow = newsItems.length, showTitle = true , paddingTop = 56}) => {
   const displayedItems = newsItems.slice(0, itemsToShow);
 
   return (
-    <div className={`bg-black text-white pt-${paddingTop} h-max pb-26`}>
-      <div className={`text-white px-8 pt-16 md:pt-24 pb-${paddingButton} `}>
+    <div className={`bg-black text-white pt-${paddingTop} pb-40`}>
+      <div className={`text-white px-4 md:px-8 pt-16 md:pt-24 `}>
         <div className="translate-y-[-100px]">
           {showTitle && (
             <>
@@ -71,7 +71,7 @@ const NewsPage = ({ itemsToShow = newsItems.length, showTitle = true, paddingBut
                 <Image src={item.image} alt='news image' width={300} height={400} className='object-cover md:w-1/2' />
                 <div className='texts pl-3 flex flex-col justify-between md:w-1/2'>
                   <div className='flex items-start justify-between'>
-                    <h1 className='font-mansory text-white text-sm md:text-md'>{item.title}</h1>
+                    <h1 className='font-mansory text-white text-sm md:text-md '>{item.title}</h1>
                     <span className='cursor-pointer'>
                       <HiArrowRight size={16} color='gray' />
                     </span>
