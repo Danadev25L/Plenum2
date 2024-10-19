@@ -50,11 +50,11 @@ const newsItems = [
   },
 ];
 
-const NewsPage = ({ itemsToShow = newsItems.length, showTitle = true , paddingTop = 56}) => {
+const NewsPage = ({ itemsToShow = newsItems.length, showTitle = true , paddingTop = 208 , paddingBottom = 160 }) => {
   const displayedItems = newsItems.slice(0, itemsToShow);
 
   return (
-    <div className={`bg-black text-white pt-${paddingTop} pb-40`}>
+    <div className={`bg-black text-white`} style={{ paddingTop: `${paddingTop}px`, paddingBottom: `${paddingBottom}px`}} >
       <div className={`text-white px-4 md:px-8 pt-16 md:pt-24 `}>
         <div className="translate-y-[-100px]">
           {showTitle && (

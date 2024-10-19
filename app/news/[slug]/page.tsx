@@ -61,7 +61,7 @@ const SingleNews = () => {
        {/* Related News Section */}
        <div className='pt-36 md:pt-52'>
         <h2 className=' text-white text-3xl md:text-5xl font-mansory uppercase px-9 '>read also</h2>
-        <NewsPage itemsToShow={3} showTitle={false}  paddingTop={4}/>
+        <NewsPage itemsToShow={3} showTitle={false} paddingBottom={80} paddingTop={4}/>
         </div>
     </div>
   );
