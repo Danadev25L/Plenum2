@@ -3,14 +3,12 @@ import React from 'react'
 import image1 from "@/public/sp1.png"
 import image2 from "@/public/sp2.png"
 import image3 from "@/public/sp3.png"
-import Navbar from '@/app/components/Navbar'
-
+ 
 
 const SingleProject = () => {
   return (
-    <div className='bg-black'>
-      <Navbar />
-        <div className='overflow-hidden'>
+    <div className='bg-black pt-28'>
+         <div className='overflow-hidden'>
           <div className='image&title flex flex-col px-4 md:px-8 pt-16 md:pt-[120px] '>
           <h1 className="text-3xl md:text-6xl font-mansory mb-4 text-white">MUHANAD CARS IN <br /> SULAYMANIYAH</h1>
           <Image 

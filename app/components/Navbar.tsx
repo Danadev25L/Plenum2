@@ -9,26 +9,25 @@ import blackLogo from "@/public/logo_black.png";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState<string | boolean>(false);
-  const [isMobile, setIsMobile] = useState(false); // New state for mobile detection
+  const [isMobile, setIsMobile] = useState(false); 
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    // Detect if the user is on a mobile device or tablet
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024); // Example threshold for mobile/tablet screens
+     const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024); 
     };
     window.addEventListener("resize", handleResize);
-    handleResize(); // Check on initial load
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const menuItems = [
     { label: "PROJECTS", href: "/projects" },
-    { label: "WALL TILES", href: "/wall-tiles" },
-    { label: "FLOOR TILES", href: "/floor-tiles" },
-    { label: "ROOF TILES", href: "/roof-tiles" },
+    { label: "WALL TILES", href: "/walls" },
+    { label: "FLOOR TILES", href: "/floors" },
+    { label: "ROOF TILES", href: "/roofs" },
     { label: "BATH & WC", href: "/bath-wc" },
     { label: "ARCHIVE", href: "/archive" },
   ];

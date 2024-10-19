@@ -1,11 +1,8 @@
 import "./globals.css";
 import Footer from "./components/Footer";
-import dynamic from "next/dynamic";
+import SmoothScrollProvider from "./components/SmoothScrollProvider";
+import Navbar from "./components/Navbar";
 
-// Dynamically import the smooth scroll provider, disabling SSR
-const SmoothScrollProvider = dynamic(() => import("./components/SmoothScrollProvider"), {
-  ssr: false,
-});
 export default function RootLayout({
   children,
 }: {
@@ -15,6 +12,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SmoothScrollProvider>
+        <div className="absolute top-0 left-0 right-0 z-50">
+              <Navbar /> 
+            </div>
           <div style={{ flex: 1 }}>
             <main>{children}</main>
           </div>

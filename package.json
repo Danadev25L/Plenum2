@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@studio-freight/lenis": "^1.0.42",
     "framer-motion": "^11.11.1",
     "gsap": "^3.12.5",
     "locomotive-scroll": "^4.1.4",
@@ -19,7 +20,8 @@
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-intersection-observer": "^9.13.1",
-    "reactstrap": "^9.2.3"
+    "reactstrap": "^9.2.3",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@types/locomotive-scroll": "^4.1.3",

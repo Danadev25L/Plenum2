@@ -43,9 +43,8 @@ const projects: Project[] = [
 const ProjectSlider = () => {
   const [isVisible, setIsVisible] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
-  const [interpolatedPosition, setInterpolatedPosition] = useState({ x: -100, y: -100 });
-  const [isHovering, setIsHovering] = useState(false);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,7 +62,7 @@ const ProjectSlider = () => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.65 }
     );
 
     if (scrollContainerRef.current) {
@@ -72,24 +71,6 @@ const ProjectSlider = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    let animationFrameId: number;
-
-    const interpolate = () => {
-      setInterpolatedPosition((prev) => ({
-        x: prev.x + (cursorPosition.x - prev.x) * 0.1,
-        y: prev.y + (cursorPosition.y - prev.y) * 0.1,
-      }));
-      animationFrameId = requestAnimationFrame(interpolate);
-    };
-
-    interpolate();
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [cursorPosition]);
 
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
@@ -112,18 +93,36 @@ const ProjectSlider = () => {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    setCursorPosition({ x: e.clientX, y: e.clientY });
+    const cursor = cursorRef.current;
+    if (cursor) {
+      cursor.style.transform = `translate(${e.clientX - 50}px, ${e.clientY - 50}px)`;
+    }
   };
 
-  const handleMouseEnter = () => setIsHovering(true);
-  const handleMouseLeave = () => setIsHovering(false);
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
 
   return (
     <div 
       className={`text-white pt-40 md:pt-64 px-6 md:px-16 lg:px-24 transition-all duration-1000 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
       }`}
+      onMouseMove={handleMouseMove}
     >
+      {/* Custom Cursor */}
+      <div 
+        id="cursor" 
+        ref={cursorRef} 
+        className={`fixed top-0 left-0 w-[100px] h-[100px] pointer-events-none z-50 transition-transform duration-300 rounded-full ${isHovered ? 'opacity-100 scale-1' : 'opacity-0 scale-0'}`}
+        style={{ transform: 'translate(-50%, -50%)', backdropFilter: 'blur(5px)', backgroundColor: 'rgba(0, 0, 0, 0.35)' }}
+      >
+        <div className="cursor-inner relative w-full h-full rounded-full">
+          <div className="cursor-circle absolute inset-0 flex items-center justify-center">
+            <span className="text-white text-lg">Discover</span>
+          </div>
+        </div>
+      </div>
+
       <div className='flex mb-20 items-start justify-between'>
         <h1 className="text-left text-2xl md:text-5xl font-mansory uppercase">
           Projects by Plenum Ciramica
@@ -133,28 +132,18 @@ const ProjectSlider = () => {
         </span>
       </div>
 
-      <div 
-        className={`custom-cursor ${isHovering ? 'visible' : 'invisible'}`}
-        style={{
-          left: `${interpolatedPosition.x}px`,
-          top: `${interpolatedPosition.y}px`,
-        }}
-      >
-        DISCOVER
-      </div>
-
       <div className="relative">
         <div
           ref={scrollContainerRef}
           className="grid grid-flow-col gap-8 overflow-x-auto scrollbar-hide"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           {projects.map((project, index) => (
             <Link href={"projects"} key={index}>
               <div
                 className="group overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-w-[300px] lg:min-w-[400px] cursor-none"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                onMouseMove={handleMouseMove}
+
               >
                 <div className="relative">
                   <Image

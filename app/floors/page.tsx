@@ -12,7 +12,7 @@ import image10 from "@/public/f10.png"
 import image11 from "@/public/f11.png"
 import image12 from "@/public/f12.png"
 import Image from 'next/image';
-import Navbar from '../components/Navbar';
+
 
 const floorTileImages = [
   { src: image1, alt: 'Living room with large windows', caption: 'prismacer' },
@@ -32,9 +32,8 @@ const floorTileImages = [
 const FloorTilesGallery: React.FC = () => {
   return (
 
-  <div className='bg-black'>
-      <Navbar  />
-    <div className=" text-white p-4 md:p-8 overflow-hidden mt-10">
+  <div className='bg-black pt-40'>
+    <div className=" text-white p-4 md:p-8 overflow-hidden ">
           <h1 className="text-5xl md:text-6xl font-mansory my-12">FLOOR TILES</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 pb-36">
             {floorTileImages.map((image, index) => (

@@ -1,4 +1,3 @@
-import Navbar from '@/app/components/Navbar';
 import React from 'react';
 import Image from 'next/image';
 import image1 from "@/public/news1.jpg"
@@ -8,8 +7,7 @@ import NewsPage from '../page';
 
 const SingleNews = () => {
   return (
-    <div className='bg-black'>
-      <Navbar />
+    <div className='bg-black pt-32'>
       <div className="text-white min-h-screen px-4 pt-16 md:pt-[120px] sm:p-8 flex justify-center">
         <div className="max-w-full sm:max-w-[665px] space-y-6 sm:space-y-8">
           <h1 className="text-2xl md:text-4xl font-mansory text-center mb-4 w-full sm:w-[665px]">
@@ -63,7 +61,7 @@ const SingleNews = () => {
        {/* Related News Section */}
        <div className='pt-36 md:pt-52'>
         <h2 className=' text-white text-3xl md:text-5xl font-mansory uppercase px-9 '>read also</h2>
-        <NewsPage itemsToShow={3} showNavbar={false} showTitle={false} paddingButton={10}/>
+        <NewsPage itemsToShow={3} showTitle={false} paddingButton={20} paddingTop={4}/>
         </div>
     </div>
   );

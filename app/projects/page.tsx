@@ -10,7 +10,6 @@ import image6 from "@/public/p6.png"
 import image7 from "@/public/p7.png"
 import image8 from "@/public/p8.png"
 import image9 from "@/public/p9.png"
-import Navbar from '../components/Navbar';
 import Link from 'next/link';
 
 const projects = [
@@ -72,8 +71,7 @@ const projects = [
 
 const Projects = () => {
   return (
-      <div className='bg-black'>
-        <Navbar />
+      <div className='bg-black pt-28'>
           <div className=" text-white min-h-screen px-8 pt-16 md:pt-[120px] pb-72">
           <h1 className="text-5xl md:text-6xl font-mansory mb-4">PROJECTS</h1>
           <p className="text-xl mb-8">(12) PROJECTS</p>

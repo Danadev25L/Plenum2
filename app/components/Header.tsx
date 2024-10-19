@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import HeaderImg from '@/public/header.png';
-import Navbar from './Navbar';
+ 
 
 const Header = () => {
   return (
@@ -20,8 +20,7 @@ const Header = () => {
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col">
-        <Navbar />
-
+ 
         {/* Main content in the center */}
         <div className="flex-grow flex flex-col items-center justify-center text-white">
           <h1 className="text-3xl font-mansory uppercase sm:text-4xl md:text-5xl lg:text-6xl text-center mb-6">

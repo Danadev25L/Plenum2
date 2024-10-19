@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import image10 from '@/public/spain+5 1.png';
 import image11 from '@/public/spain+5 2.png';
-import Navbar from '../components/Navbar';
 
 const newsItems = [
   {
@@ -51,13 +50,12 @@ const newsItems = [
   },
 ];
 
-const NewsPage = ({ itemsToShow = newsItems.length, showNavbar = true, showTitle = true, paddingButton = 40}) => {
+const NewsPage = ({ itemsToShow = newsItems.length, showTitle = true, paddingButton = 40 , paddingTop = 56}) => {
   const displayedItems = newsItems.slice(0, itemsToShow);
 
   return (
-    <div className='bg-black text-white'>
-      {showNavbar && <div className='pb-28'> <Navbar /></div> }
-      <div className={`text-white px-8 pt-16 md:pt-24 pb-${paddingButton}`}>
+    <div className={`bg-black text-white pt-${paddingTop} h-max pb-26`}>
+      <div className={`text-white px-8 pt-16 md:pt-24 pb-${paddingButton} `}>
         <div className="translate-y-[-100px]">
           {showTitle && (
             <>

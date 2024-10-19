@@ -28,18 +28,18 @@ const Section3 = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
   };
   const animationVariants2 = {
-    hidden: { opacity: 0, y: 200 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.3, ease: "easeOut" , delay:0.2 } },
+    hidden: { opacity: 0, y: 220 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: "easeOut" , delay:0.2 } },
   };
   const animationVariants3 = {
     hidden: { opacity: 0, y: 160 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: "easeOut" , delay:1.5 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" , delay:1.5 } },
   };
 
   return (
 <div className="bg-black text-white min-h-screen px-4 sm:p-8 pt-0 md:pt-36 sm:pt-52">
       <motion.h1
-        className="text-3xl text-left sm:text-5xl font-mansory md:pl-44 mb-6 sm:mb-8"
+        className="text-3xl text-left md:text-5xl lg:text-6xl font-mansory md:pl-32 mb-6 sm:mb-8"
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
         variants={animationVariants}
