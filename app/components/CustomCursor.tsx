@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
@@ -21,13 +20,10 @@ const CustomCursor = () => {
   return (
     <motion.div
       id="cursor"
-      className={`fixed top-0 left-0 w-24 h-24 pointer-events-none z-50 ${
-        hovered ? "scale-100" : "scale-0"
-      }`}
+      className="fixed top-0 left-0 w-24 h-24 pointer-events-none z-50"
       style={{
         translate: "-50%, -50%",
         transform: `translate(${position.x}px, ${position.y}px)`,
-        
       }}
     >
       <div className="cursor-inner">
