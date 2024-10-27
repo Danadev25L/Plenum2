@@ -1,0 +1,76 @@
+/* styles/gallery.css */
+
+/* Base Swiper styles */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+/* Gallery modal styles */
+.gallery-swiper {
+  --swiper-navigation-size: 24px;
+  --swiper-theme-color: #fff;
+  --swiper-navigation-sides-offset: 20px;
+}
+
+/* Navigation button styles */
+.gallery-swiper .swiper-button-next,
+.gallery-swiper .swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: white;
+}
+
+.gallery-swiper .swiper-button-next:hover,
+.gallery-swiper .swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-swiper .swiper-button-next::after,
+.gallery-swiper .swiper-button-prev::after {
+  font-size: 20px;
+}
+
+/* Pagination styles */
+.gallery-swiper .swiper-pagination {
+  bottom: 20px !important;
+}
+
+.gallery-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0.5;
+}
+
+.gallery-swiper .swiper-pagination-bullet-active {
+  background: white;
+  opacity: 1;
+}
+
+/* Slide styles */
+.gallery-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .gallery-swiper .swiper-button-next,
+  .gallery-swiper .swiper-button-prev {
+    width: 32px;
+    height: 32px;
+  }
+
+  .gallery-swiper .swiper-button-next::after,
+  .gallery-swiper .swiper-button-prev::after {
+    font-size: 16px;
+  }
+
+  .gallery-swiper {
+    --swiper-navigation-sides-offset: 10px;
+  }
+}

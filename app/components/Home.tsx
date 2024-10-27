@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import AnimatedSection from './AnimatedSection'
+import AnimatedSection from './animatied-section/AnimatedSection'
 
 const Home = () => {
   return (

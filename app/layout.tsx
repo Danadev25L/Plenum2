@@ -1,8 +1,8 @@
 import "./globals.css";
+import "@/app/gallery.css"
 import Footer from "./components/Footer";
 import SmoothScrollProvider from "./components/SmoothScrollProvider";
 import Navbar from "./components/Navbar";
-
 export default function RootLayout({
   children,
 }: {

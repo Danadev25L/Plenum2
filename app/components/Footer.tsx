@@ -12,13 +12,13 @@ const Footer = () => {
               minimum thickness surfaces, which are used in exterior
               architecture, interior design and furnishings.
             </p>
-            <h2 className="text-2xl font-bold mb-2">PleNum</h2>
+            <h2 className="text-2xl font-medium mb-2">PleNum</h2>
             <p>ceramica</p>
           </div>
           
           <div className="col-span-1 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <h3 className="font-bold mb-2">COMPANY</h3>
+              <h3 className=" mb-6">COMPANY</h3>
               <ul className="space-y-1">
                 <li>PROJECTS</li>
                 <li>WALL TILES</li>
@@ -30,7 +30,7 @@ const Footer = () => {
             </div>
             
             <div>
-              <h3 className="font-bold mb-2">FOLLOW</h3>
+              <h3 className=" mb-6">FOLLOW</h3>
               <ul className="space-y-1 mb-4">
                 <li>FACEBOOK</li>
                 <li>INSTAGRAM</li>
@@ -52,7 +52,7 @@ const Footer = () => {
             </div>
             
             <div>
-              <h3 className="font-bold mb-2">CONTACT</h3>
+              <h3 className=" mb-6">CONTACT</h3>
               <p>+964 (0) 750 629 3333</p>
               <p>+964 (0) 771 855 3303</p>
               <p>CONTACT@PLENUMCERAMICA.COM</p>
