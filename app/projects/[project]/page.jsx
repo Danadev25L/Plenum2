@@ -16,7 +16,7 @@ const SingleProject = () => {
   const [isHovered, setIsHovered] = useState(false);
   const cursorRef = useRef(null);
 
-  const handleMouseMove = (e: { clientX: number; clientY: number }) => {
+  const handleMouseMove = (e) => {
     const cursor = cursorRef.current;
     if (cursor) {
       cursor.style.transform = `translate(${e.clientX - 50}px, ${e.clientY - 50}px)`;
