@@ -11,6 +11,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import logoA from "@/public/logA.png"
+import logoB from "@/public/logb.png"
  
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,10 +86,13 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img
-                  src={isExpanded ? "/logo_black.png" : "/logo_white.png"}
+                <Image
+                  width={105}
+                  height={60}
+                  quality={100}
+                  src={isExpanded ? logoB : logoA}
                   alt="logo"
-                  className="w-24 h-auto transition-opacity duration-500"
+                  className=" w-max h-auto transition-opacity duration-500"
                 />
               </Link>
             </div>

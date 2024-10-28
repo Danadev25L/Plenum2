@@ -5,10 +5,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+interface NewsItem {
+  id: string;
+  title: string;
+  thumbnail1: string;
+  month: string;
+  year: string;
+}
+
 const API_URL = 'http://localhost:8000';
 
 const NewsPage = ({ itemsToShow = Infinity, showTitle = true, paddingTop = 208, paddingBottom = 160 }) => {
-  const [news, setNews] = useState<any[]>([]);
+  const [news, setNews] = useState<NewsItem[]>([]);
   const displayedItems = news.slice(0, itemsToShow);
   const [isHovered, setIsHovered] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -27,8 +35,8 @@ const NewsPage = ({ itemsToShow = Infinity, showTitle = true, paddingTop = 208, 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/news');
-        const data = await response.json();
+        const response = await fetch(`${API_URL}/api/news`);
+        const data: NewsItem[] = await response.json(); // Assuming the response matches the NewsItem structure
         setNews(data);
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -106,12 +114,12 @@ const NewsPage = ({ itemsToShow = Infinity, showTitle = true, paddingTop = 208, 
                       alt='news image' 
                       width={300} 
                       height={400} 
-                      className='object-cover '
+                      className='object-cover'
                     />
                   </motion.div>
                   <div className='texts pl-3 flex flex-col justify-between md:w-1/2 sm:pt-4 md:pt-0'>
                     <div className='flex items-start justify-between'>
-                      <h1 className='font-mansory text-white text-[10px] lg:text-[15px] '>{item.title}</h1>
+                      <h1 className='font-mansory text-white text-[10px] lg:text-[15px]'>{item.title}</h1>
                       <span>
                         <HiArrowRight size={16} color='gray' />
                       </span>
@@ -119,7 +127,7 @@ const NewsPage = ({ itemsToShow = Infinity, showTitle = true, paddingTop = 208, 
                     <div className='flex flex-col'>
                       <div className='flex text-start gap-2 items-center'>
                         <span className='rounded-xl bg-gray-500 px-2 text-xs md:text-md'>NEWS</span>
-                        <span className='text-xs md:text-md'>{item.month+" "+item.year}</span>
+                        <span className='text-xs md:text-md'>{item.month + " " + item.year}</span>
                       </div>
                       <hr className='border-gray-500 my-2' />
                     </div>

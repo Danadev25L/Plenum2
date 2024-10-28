@@ -45,7 +45,9 @@ const ProjectSlider = () => {
   const [isVisible, setIsVisible] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const cursorRef = useRef<HTMLDivElement | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -149,6 +151,8 @@ const ProjectSlider = () => {
               >
                 <div className="relative">
                   <Image
+                  width={500}
+                  height={300}
                     src={project.image}
                     alt={project.title}
                     className="max-w-[390px] max-h-[293px] object-cover transition-transform duration-500 hover:scale-105"
