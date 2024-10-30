@@ -24,22 +24,28 @@ footer {
 }
 
 /* Hide scrollbars but allow scrolling */
-body, html {
-  overflow: -moz-scrollbars-none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
-  scrollbar-width: none; /* For Firefox */
+body,
+html {
+  overflow: -moz-scrollbars-none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* For Firefox */
 }
 
 /* Hide scrollbars for WebKit browsers */
-body::-webkit-scrollbar, html::-webkit-scrollbar {
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
   display: none;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  scroll-behavior: smooth ;
+  scroll-behavior: smooth;
 
 }
 
@@ -159,25 +165,29 @@ html.lenis {
 
 /* Custom CSS to hide scrollbar */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari, and Opera */
+  display: none;
+  /* Chrome, Safari, and Opera */
 }
 
 .custom-button {
-  border: 0.1px solid rgba(255, 255, 255, 0.454); /* Thinner border */
-  padding: 0.5rem 1rem;  
-  background: transparent;  
-  color: white; 
-  border-radius: 0.5rem;  
-  transition: all 0.5s ease;  
+  border: 0.1px solid rgba(255, 255, 255, 0.454);
+  /* Thinner border */
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: white;
+  border-radius: 0.5rem;
+  transition: all 0.5s ease;
 }
 
 .custom-button:hover {
-  border-color: white; 
+  border-color: white;
   background: white;
   color: black;
 }
@@ -200,7 +210,8 @@ html.lenis {
   font-weight: bold;
   color: white;
   text-transform: uppercase;
-  transform: translate(-50%, 50%); /* Center the cursor */
+  transform: translate(-50%, 50%);
+  /* Center the cursor */
   transition: transform 0.1s ease-out;
 }
 
@@ -264,24 +275,44 @@ html.lenis {
 }
 
 
-.project-item:hover ~ .cursor {
+.project-item:hover~.cursor {
   opacity: 1;
 }
 
 
 /* brands in navbar */
 
-#brands{
+#brands {
   background-color: rgba(169, 168, 168, 0.779);
 }
 
 #brands:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(20 184 166 / var(--tw-bg-opacity)) /* #14b8a6 */;
+  background-color: rgb(20 184 166 / var(--tw-bg-opacity))
+    /* #14b8a6 */
+  ;
   transition: 0.5s all;
 }
 
 .brand-image {
-  object-fit: contain; /* or 'cover' depending on the desired effect */
-  max-height: 60px; /* Ensure images don't exceed the intended height */
+  object-fit: contain;
+  /* or 'cover' depending on the desired effect */
+  max-height: 60px;
+  /* Ensure images don't exceed the intended height */
+}
+
+.fadeIn {
+  animation: fadeInAnimation 1s ease-in-out forwards;
+  opacity: 0;
+  -webkit-animation: fadeInAnimation 1s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

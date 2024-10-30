@@ -13,7 +13,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import logoA from "@/public/logA.png"
 import logoB from "@/public/logb.png"
- 
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isNavHovered, setIsNavHovered] = useState(false);
@@ -62,9 +62,8 @@ const Navbar = () => {
   };
 
   const BrandsDrawer = () => (
-    <div className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${
-      isBrandsDrawerOpen ? "translate-x-0 bg-white" : "translate-x-full"
-    }`}>
+    <div className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${isBrandsDrawerOpen ? "translate-x-0 bg-white" : "translate-x-full"
+      }`}>
       <div className="flex flex-col h-full">
         <div className="flex justify-end p-4">
           <button
@@ -96,11 +95,10 @@ const Navbar = () => {
   return (
     <>
       <nav className="w-full top-0 z-50 relative">
-        <div 
-          className={`absolute inset-0 w-full bg-white transition-transform duration-500 ease-in-out origin-top -z-10 ${
-            isExpanded ? 'scale-y-100' : 'scale-y-0'
-          }`}
-          style={{ 
+        <div
+          className={`absolute inset-0 w-full bg-white transition-transform duration-500 ease-in-out origin-top -z-10 ${isExpanded ? 'scale-y-100' : 'scale-y-0'
+            }`}
+          style={{
             height: showBrandsDropdown ? 'calc(100% + 60px)' : '100%',
             transition: 'transform 500ms ease-in-out, height 500ms ease-in-out'
           }}
@@ -120,27 +118,40 @@ const Navbar = () => {
             <div className="flex justify-between items-center h-16">
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/">
-                  <Image
-                    width={105}
-                    height={60}
-                    quality={100}
-                    src={isExpanded ? logoB : logoA}
-                    alt="logo"
-                    className="w-max h-auto transition-opacity duration-500"
-                  />
+                  {isExpanded ? (
+                    <div className="fadeIn">
+                      <Image
+                        width={105}
+                        height={60}
+                        quality={100}
+                        src={logoB}
+                        alt="logo"
+                        className="w-max h-auto transform duration-1000 fadeIn"
+                      />
+                    </div>
+                  ) : (
+                    <Image
+                      width={105}
+                      height={60}
+                      quality={100}
+                      src={logoA}
+                      alt="logo"
+                      className="w-max h-auto transform duration-1000 fadeIn"
+                    />
+                  )}
+
                 </Link>
               </div>
 
-                {/*for large screens*/}
+              {/*for large screens*/}
 
               <div className="hidden lg:flex items-center justify-center gap-8">
                 {menuItems.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
-                    className={`menu text-sm relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:transition-all after:duration-400 after:scale-x-0 hover:after:scale-x-100 ${
-                      isExpanded ? "text-gray-800 hover:text-black after:bg-black" : "text-white after:bg-white"
-                    } transition-colors duration-500`}
+                    className={`menu text-sm relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:transition-all after:duration-400 after:scale-x-0 hover:after:scale-x-100 ${isExpanded ? "text-gray-800 hover:text-black after:bg-black" : "text-white after:bg-white"
+                      } transition-colors duration-500`}
                     onMouseEnter={() => setHoveredItem(item.label)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
@@ -150,11 +161,10 @@ const Navbar = () => {
               </div>
 
               <div className="hidden lg:flex items-center">
-                <Link 
-                  href="/contact" 
-                  className={`text-sm hover:font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:transition-all after:duration-400 after:scale-x-0 hover:after:scale-x-100 ${
-                    isExpanded ? "text-black after:bg-black" : "text-white after:bg-white"
-                  } transition-colors duration-500`}
+                <Link
+                  href="/contact"
+                  className={`text-sm hover:font-medium relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:transition-all after:duration-400 after:scale-x-0 hover:after:scale-x-100 ${isExpanded ? "text-black after:bg-black" : "text-white after:bg-white"
+                    } transition-colors duration-500`}
                 >
                   CONTACT
                 </Link>
@@ -171,21 +181,20 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div 
-            className={`w-full overflow-hidden transition-all duration-500 ease-in-out ${
-              showBrandsDropdown ? 'opacity-100 max-h-[110px]' : 'opacity-0 max-h-0'
-            }`}
+          <div
+            className={`w-full overflow-hidden transition-all duration-500 ease-in-out ${showBrandsDropdown ? 'opacity-100 max-h-[110px]' : 'opacity-0 max-h-0'
+              }`}
             onMouseEnter={() => setHoveredItem("BRANDS")}
             onMouseLeave={() => setHoveredItem(null)}
           >
             <div className="container mx-auto px-4 py-6 flex items-center justify-center h-[150px]">
               <div className="grid grid-cols-4 md:grid-cols-8 gap-6">
                 {brandLogos.map((brand) => (
-                  <div 
-                    key={brand.name} 
+                  <div
+                    key={brand.name}
                     id="brands"
-                    className="flex items-center justify-center px-max py-max rounded-full transition-colors duration-300" 
-                  > 
+                    className="flex items-center justify-center px-max py-max rounded-full transition-colors duration-300"
+                  >
                     <Link href={brand.href}>
                       <Image
                         src={brand.src}
@@ -203,9 +212,8 @@ const Navbar = () => {
         </div>
 
         <div
-          className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${
-            isOpen ? "translate-x-0 bg-white" : "translate-x-full"
-          }`}
+          className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ease-in-out ${isOpen ? "translate-x-0 bg-white" : "translate-x-full"
+            }`}
         >
           <div className="flex flex-col h-full">
             <div className="flex justify-end p-4">
