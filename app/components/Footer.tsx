@@ -85,10 +85,10 @@ const Footer = () => {
   // Dynamically set footer height for placeholder
   useEffect(() => {
     if (footerRef.current) {
-      setFooterHeight(footerRef.current.offsetHeight);
-      const handleResize = () => setFooterHeight(footerRef.current.offsetHeight);
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
+      const updateFooterHeight = () => setFooterHeight(footerRef.current.offsetHeight);
+      updateFooterHeight();
+      window.addEventListener('resize', updateFooterHeight);
+      return () => window.removeEventListener('resize', updateFooterHeight);
     }
   }, []);
 
