@@ -80,7 +80,7 @@ const Carousel: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="container mx-auto p-4 mb-20 lg:mb-28 md:mt-24"
+      className="container mx-auto p-4 mb-20 lg:pb-28 md:pt-24"
     >
       {/* Custom Cursor */}
       <div
@@ -115,7 +115,7 @@ const Carousel: React.FC = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="flex justify-center space-x-6 mb-16 md:mb-24 lg:mb-28 overflow-x-auto scrollbar-hide"
+        className="flex justify-center py-2  space-x-6 mb-16 md:mb-24 lg:mb-28 overflow-x-auto scrollbar-hide"
       >
         {slides.map((slide, index) => (
           <button
@@ -125,7 +125,7 @@ const Carousel: React.FC = () => {
             }}
             onClick={() => goToSlide(index)}
             className={`px-2 py-1 md:px-3 md:py-2 lg:px-6 lg:py-3 rounded-full transition-all duration-500 ease-in-out transform
-              ${activeIndex === index ? 'bg-teal-500 text-white scale-105 shadow-md' : 'text-white'} 
+              ${activeIndex === index ? 'bg-[#26B3B4] text-white scale-105 shadow-md' : 'text-white'} 
               text-[10px] md:text-[14px] lg:text-[16px] whitespace-nowrap`}
           >
             {slide.title}
@@ -168,7 +168,7 @@ const Carousel: React.FC = () => {
                     <Image
                       src={slide.image}
                       alt={slide.title}
-                      className="object-cover sm:w-max sm:h-max lg:min-w-[490px] md:min-h-[678px]"
+                      className="object-cover mx-auto sm:w-max sm:h-max lg:min-w-[490px] md:min-h-[678px]"
                     />
                     <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 card__main">
                       <h5 className="text-xl md:text-3xl font-mansory text-center text-white uppercase">

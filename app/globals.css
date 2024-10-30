@@ -168,10 +168,10 @@ html.lenis {
 }
 
 .custom-button {
-  border: 0.3px solid rgba(255, 255, 255, 0.6); /* Thinner border */
+  border: 0.1px solid rgba(255, 255, 255, 0.454); /* Thinner border */
   padding: 0.5rem 1rem;  
-  background: transparent;
-  color: white;  
+  background: transparent;  
+  color: white; 
   border-radius: 0.5rem;  
   transition: all 0.5s ease;  
 }

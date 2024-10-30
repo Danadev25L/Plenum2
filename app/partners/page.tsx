@@ -1,6 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import partner from "@/public/Rectangle 3841.jpg";
+import logo from"@/public/partner.png";
+
+
 
 const PartnerSection = () => {
   return (
@@ -20,14 +23,7 @@ const PartnerSection = () => {
           
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="flex items-center space-x-4">
-              <span className="text-3xl md:text-6xl font-bold tracking-wider text-white" 
-                style={{ fontFamily: 'Eurostile, "Handel Gothic", "Bank Gothic", Arial, sans-serif' }}>
-                RSCC
-              </span>
-              <div className="text-sm md:text-xl text-white font-medium pl-2 border-l-[1px] md:border-l-2 border-white h-10 md:h-12 flex items-center" 
-                style={{ fontFamily: 'Eurostile, "Handel Gothic", "Bank Gothic", Arial, sans-serif' }}>
-                GROUP OF<br />COMPANIES
-              </div>
+              <Image src={logo} alt={'partner logo'} className=" w-40 md:w-[400px] lg:w-[515px]" />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { HiArrowRight } from "react-icons/hi2";
+import { HiArrowRight } from "react-icons/hi2"; 
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import image10 from "@/public/spain+5 1.png";
 import image11 from "@/public/spain+5 2.png";
@@ -8,6 +9,8 @@ import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 
 const NewsSection = () => {
+
+  const router = useRouter();
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
   const [isHovered, setIsHovered] = useState(false);
@@ -81,9 +84,10 @@ const NewsSection = () => {
             className="item flex flex-col sm:flex-row lg:w-1/2 mb-8 lg:mb-0 cursor-none"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-          >
+            onClick={() => router.push('/news')}
+            >
             <div className="sm:w-2/5 lg:w-2/5 mb-4 sm:mb-0 sm:mr-4">
-              <div className="w-full h-48 sm:h-full relative">
+              <div className="min-w-[252px] min-h-[252px] sm:h-full relative">
                 <Image 
                   src={image} 
                   alt="news image" 
@@ -101,11 +105,13 @@ const NewsSection = () => {
                   <HiArrowRight size={20} color="gray" />
                 </span>
               </div>
-              <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="rounded-xl bg-gray-500 px-2 py-1 text-xs">NEWS</span>
-                <span className="text-xs">September 2024</span>
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-xl bg-gray-500 px-2 py-1 text-xs">NEWS</span>
+                  <span className="text-xs inline-block">September 2024</span>
+                </div>
+                <hr className="border-t border-gray-500 w-full" />
               </div>
-              <hr className="border-t border-gray-500" />
             </div>
           </div>
         ))}

@@ -74,3 +74,15 @@
     --swiper-navigation-sides-offset: 10px;
   }
 }
+
+.cursor-wrapper {
+  mix-blend-mode: difference;
+  transition: transform 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+/* Add hover states for interactive elements */
+a:hover,
+button:hover,
+[role="button"]:hover {
+  cursor: pointer;
+}
