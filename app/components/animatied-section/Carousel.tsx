@@ -14,32 +14,27 @@ const slides = [
   {
     title: 'Wall Tiles',
     image: image2,
-    link: "tiles/walls",
+    link: "2",
   },
   {
     title: 'Floor Tiles',
     image: image1,
-    link: "tiles/floors",
+    link: "1",
   },
   {
     title: 'Roof Tiles',
     image: image3,
-    link: "tiles/roofs",
-  },
-  {
-    title: 'Floor Tiles',
-    image: image1,
-    link: "tiles/floors",
+    link: "3",
   },
 ];
 
 const Carousel: React.FC = () => {
-  const middleIndex = Math.floor(slides.length / 2);
-  const [activeIndex, setActiveIndex] = useState(middleIndex);
+   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   const buttonRefs = useRef<HTMLButtonElement[]>([]);
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  // const [tiles , setTiles] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: '-50px' });
 
@@ -77,10 +72,25 @@ const Carousel: React.FC = () => {
     });
   };
 
+/*   useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/api/carousels`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        setTiles(data.data);
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      }  
+    };
+
+    fetchNews();
+  }, []);
+ */
   return (
     <div 
       ref={containerRef}
-      className="container mx-auto p-4 mb-20 lg:pb-28 md:pt-24"
+      className="container mx-auto mb-20 lg:pb-28 md:pt-24"
     >
       {/* Custom Cursor */}
       <div
@@ -141,23 +151,24 @@ const Carousel: React.FC = () => {
       >
         <Swiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          initialSlide={middleIndex}
+          initialSlide={3}
           spaceBetween={24}
           slidesPerView={1}
           centeredSlides={true}
-          loop
+          loop={true}
           speed={800}
           breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+             1024: { slidesPerView: 2 },
+            1400: {slidesPerView: 3 }
           }}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           className="frames__slider"
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <Link href={slide.link} className="block">
+              <Link href={"tiles/"+slide.link} className="block">
                 <div
                   className={`card__wrapper bg-background rounded-md shadow-lg transition-transform duration-500 ease-in-out cursor-none
                   ${index === activeIndex ? 'scale-105' : 'scale-90'}`}

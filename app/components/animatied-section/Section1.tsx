@@ -3,6 +3,7 @@ import image1 from "@/public/se1.jpg"
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Section1 = () => {
   const controls2 = useAnimation();
@@ -86,7 +87,9 @@ const Section1 = () => {
             variants={fadeInUpVariants4}
             className=''
           >
-          <button className='button border-opacity-90 border-white text-lg w-max custom-button py-1 px-3 rounded-lg'>ABOUT US</button>
+            <Link href={'about-us'} >
+          <button className='button border-opacity-90 border-white text-sm w-max custom-button py-1 px-4 rounded-lg'>ABOUT US</button>
+          </Link>
           </motion.div>
         </div>
       </motion.div>

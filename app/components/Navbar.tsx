@@ -1,12 +1,4 @@
 "use client"
-import image1 from "@/public/ab.png";
-import image2 from "@/public/Infinity+logoL.png";
-import image3 from "@/public/alapanaL.png";
-import image4 from "@/public/armani+rocaL.png";
-import image5 from "@/public/cobertL.png";
-import image6 from "@/public/laminam.png"
-import image7 from "@/public/prissmacerL.png";
-import image8 from "@/public/rocca+.png"
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
@@ -20,8 +12,9 @@ const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isBrandsDrawerOpen, setIsBrandsDrawerOpen] = useState(false);
+  const [logoData, setLogoData] = useState<Brand[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,16 +26,39 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const brandLogos = [
-    { name: "AB", src: image1, width: 95, height: 60, href: "/brands/ab" },
-    { name: "Altaplania", src: image2, width: 150, height: 60, href: "/brands/altaplania" },
-    { name: "ARMANI/Roca", src: image3, width: 140, height: 60, href: "/brands/armani-roca" },
-    { name: "COBERT", src: image4, width: 140, height: 70, href: "/brands/cobert" },
-    { name: "INFINITY", src: image5, width: 120, height: 60, href: "/brands/infinity" },
-    { name: "LAMINAM", src: image6, width: 140, height: 60, href: "/brands/laminam" },
-    { name: "Pristmacer", src: image7, width: 140, height: 60, href: "/brands/pristmacer" },
-    { name: "Roca", src: image8, width: 100, height: 60, href: "/brands/roca" }
-  ];
+
+  interface Brand {
+    id: number;
+    name: string;
+    logo_url: string;
+  }
+
+  useEffect(() => {
+    const fetchLogo = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/brands');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setLogoData(data.data);
+        console.log(data.data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLogo();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+
 
   const menuItems = [
     { label: "HOME", href: "/" },
@@ -50,7 +66,7 @@ const Navbar = () => {
     { label: "PROJECT", href: "/projects" },
     { label: "BRANDS", href: "#", isBrands: true },
     { label: "PARTNER", href: "/partners" },
-    { label: "SHOWROOM", href: "/showroom" },
+    { label: "SHOWROOMS", href: "/showrooms" },
     { label: "NEWS", href: "/news" },
   ];
 
@@ -74,10 +90,10 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex-grow px-4 py-6 overflow-y-auto">
-          {brandLogos.map((brand) => (
+          {logoData.map((brand) => (
             <Link
-              key={brand.name}
-              href={brand.href}
+              key={brand.id}
+              href={brand.name}
               className="block pb-8 text-3xl hover:text-gray-700 text-black"
               onClick={() => setIsBrandsDrawerOpen(false)}
             >
@@ -189,18 +205,18 @@ const Navbar = () => {
           >
             <div className="container mx-auto px-4 py-6 flex items-center justify-center h-[150px]">
               <div className="grid grid-cols-4 md:grid-cols-8 gap-6">
-                {brandLogos.map((brand) => (
+                {logoData.map((brand) => (
                   <div
                     key={brand.name}
                     id="brands"
                     className="flex items-center justify-center px-max py-max rounded-full transition-colors duration-300"
                   >
-                    <Link href={brand.href}>
+                    <Link href={"brands/"+brand.id}>
                       <Image
-                        src={brand.src}
+                        src={brand.logo_url}
                         alt={brand.name}
-                        width={brand.width}
-                        height={brand.height}
+                        width={120}
+                        height={60}
                         className="brand-image h-max px-6 transition-opacity duration-300"
                       />
                     </Link>

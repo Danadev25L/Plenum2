@@ -1,77 +1,138 @@
 "use client"
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import image1 from "@/public/f1.png";
-import image2 from "@/public/f2.png";
-import image3 from "@/public/f3.png";
-import image4 from "@/public/f4.png";
-import image5 from "@/public/f5.png";
-import image6 from "@/public/f6.png";
+import { useParams } from 'next/navigation';
 
-const floorTileImages = [
-  { src: image1, alt: 'Living room with large windows', caption: 'prismacer' },
-  { src: image2, alt: 'Modern living room', caption: 'AB' },
-  { src: image3, alt: 'Kitchen with dining area', caption: 'prismacer' },
-  { src: image4, alt: 'Minimalist living room', caption: 'prismacer' },
-  { src: image5, alt: 'Living room with marble floor', caption: 'AB' },
-  { src: image6, alt: 'Modern living room with accent colors', caption: 'prismacer' },
-];
 
-const FloorTilesGallery: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+const InteriorPortfolio = () => {
+ const params = useParams();
 
-  useEffect(() => {
-    // Simulate image loading
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // Adjust the time if needed
-    return () => clearTimeout(timer);
-  }, []);
+interface Tile {
+  name: string;
+  image_url:string
+}
 
-  if (loading) {
-    return (
-      <div className="bg-black min-h-screen flex items-center justify-center">
-        <button className="inline-block rounded-full bg-teal-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-green-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-green-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-green-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0" type="button">
-          <div role="status" className="inline-block h-3 w-3 mr-2 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]">
-            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
-          </div>
-          Loading
-        </button>
-      </div>
-    );
-  }
+// Update the state declaration
+const [tiles, setTiles] = useState<Tile>({
+  name: '',
+  image_url:''
+  // Initialize other properties as needed
+});
 
+
+useEffect(() => {
+  const fetchTiles = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/api/tile-types/${params.tile}`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      setTiles(data.data);
+    } catch (error) {
+      console.error('Error fetching news:', error);
+    }  
+  };
+
+  fetchTiles();
+}, [params.tile]);
+
+  
   return (
-    <div className='bg-black pt-40 '>
-      <div className="text-white px-4 md:p-8 overflow-hidden">
-        <h1 className="text-4xl md:text-5xl font-mansory my-12 mx-auto">FLOOR TILES</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-6 pb-36">
-          {floorTileImages.map((image, index) => (
-            <div key={index} className="flex flex-col items-start w-full max-w-[500px] mx-auto">
-              <div className="w-full h-[300px]">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover rounded-sm"
-                />
-              </div>
-              <p className=" text-lg md:text-2xl bg-black bg-opacity-50 py-1 rounded">
-                {image.caption}
-              </p>
+    <div className="min-h-screen bg-black px-4 py-16 sm:py-24 md:py-4 lg:py-24 md:px-6 lg:px-8">
+      {/* Logo */}
+      <h1 className='text-white text-3xl md:text-4xl lg:text-5xl font-mansory uppercase mt-14 md:mt-40 mb-10 md:mb-28 lg:mb-36'>{tiles.name}</h1>
+
+      <div className="mb-8 pt-8 sm:pt-0">
+
+        <h1 className="text-white text-2xl md:text-3xl lg:text-4xl font-light ">prismacer</h1>
+      </div>
+
+      {/* Main Container */}
+      <div className="flex flex-col gap-6 sm:gap-3">
+        {/* Top Row */}
+        <div className="flex flex-col md:flex-row gap-4 sm:gap-2 h-auto md:h-[700px]">
+          {/* Top Left - Large Image */}
+          <div className="relative group overflow-hidden md:flex-1 h-[300px] sm:h-[400px] md:h-full">
+            {tiles.image_url &&
+            <Image
+             width={800}
+             height={600}
+              src={tiles.image_url}
+              alt="Modern living room with lake view"
+              className="w-full h-full object-cover"
+              priority
+            /> }
+
+          </div>
+
+          {/* Top Right - Two Square Images Stack */}
+          <div className="flex flex-col gap-4 sm:gap-2 h-auto md:h-full">
+            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
+              {tiles.image_url &&
+              <Image
+              width={800}
+              height={600}            
+               src={tiles.image_url}
+               alt="Modern kitchen design"
+               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
+             /> }
+              
             </div>
-          ))}
+            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
+            {tiles.image_url &&
+              <Image
+              width={800}
+              height={600}            
+               src={tiles.image_url}
+               alt="Modern kitchen design"
+               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
+             /> }
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Row */}
+        <div className="flex flex-col md:flex-row gap-4 sm:gap-2 h-auto md:h-[700px]">
+          {/* Bottom Left - Two Square Images Side by Side */}
+          <div className="flex flex-col gap-4 sm:gap-2 h-auto md:h-full">
+            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
+            {tiles.image_url &&
+              <Image
+              width={800}
+              height={600}            
+               src={tiles.image_url}
+               alt="Modern kitchen design"
+               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
+             /> }
+            </div>
+            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
+            {tiles.image_url &&
+              <Image
+              width={800}
+              height={600}            
+               src={tiles.image_url}
+               alt="Modern kitchen design"
+               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
+             /> }
+            </div>
+          </div>
+
+          {/* Bottom Right - Large Image */}
+          <div className="relative group overflow-hidden md:flex-1 h-[300px] sm:h-[400px] md:h-full">
+            {tiles.image_url &&
+            <Image
+              src={tiles.image_url}
+              width={800}
+              height={600}
+              alt="Spacious modern room"
+              className="w-full h-full object-cover"
+            />
+            }
+
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-const FloorTilesGalleryWithSuspense: React.FC = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <FloorTilesGallery />
-    </Suspense>
-  );
-};
-
-export default FloorTilesGalleryWithSuspense;
+export default InteriorPortfolio;

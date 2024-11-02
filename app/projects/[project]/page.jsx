@@ -46,8 +46,8 @@ const SingleProject = () => {
         const response = await fetch(`${API_URL}/api/projects/${params.project}`)
         if (!response.ok) throw new Error('Network response was not ok')
         const data = await response.json()
-        setProject(data)
-      } catch (error) {
+        setProject(data.data)
+       } catch (error) {
         console.error('Error fetching projects:', error)
       } finally {
         setLoading(false)
@@ -60,9 +60,9 @@ const SingleProject = () => {
   const getGalleryImages = () => {
     if (!project) return []
     const images = []
-    if (project.thumbnail1) images.push({ src: API_URL + project.thumbnail1, alt: 'Gallery image 1' })
-    if (project.thumbnail2) images.push({ src: API_URL + project.thumbnail2, alt: 'Gallery image 2' })
-    if (project.thumbnail3) images.push({ src: API_URL + project.thumbnail3, alt: 'Gallery image 3' })
+    if (project.thumbnail1) images.push({ src: `${API_URL}/${project.thumbnail1}`, alt: 'Gallery image 1' })
+    if (project.thumbnail2) images.push({ src: `${API_URL}/${project.thumbnail2}`, alt: 'Gallery image 2' })
+    if (project.thumbnail3) images.push({ src: `${API_URL}/${project.thumbnail3}`, alt: 'Gallery image 3' })
     return images
   }
 
@@ -115,7 +115,7 @@ const SingleProject = () => {
 
           {project?.thumbnail1 && (
             <Image 
-              src={API_URL+project.thumbnail1}
+              src={`${API_URL}/${project.thumbnail1}`}
               alt="image"
               width={1356}
               height={856}
@@ -132,7 +132,7 @@ const SingleProject = () => {
                   {project?.article1}
                 </h1>
                 <p className="text-white pt-6">
-                  {project?.description1}
+                  {project?.short_description}
                 </p>
               </div>
               
@@ -140,19 +140,19 @@ const SingleProject = () => {
                 <div className="max-w-2xl mx-auto">
                   <div className="grid grid-cols-2 gap-y-6 text-lg font-mansory">
                     <div className="uppercase">Location</div>
-                    <div className="text-right capitalize">{project?.location}</div>
+                    <div className="text-right capitalize">{project?.project_locatio}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
                     
                     <div className="uppercase">Year</div>
-                    <div className="text-right capitalize">{project?.year}</div>
+                    <div className="text-right capitalize">{project?.date}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
                     
                     <div className="uppercase">Applications</div>
-                    <div className="text-right capitalize">{project?.application}</div>
+                    <div className="text-right capitalize">{project?.project_category}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
                     
                     <div className="uppercase">Project Type</div>
-                    <div className="text-right capitalize">{project?.projectType}</div>
+                    <div className="text-right capitalize">{project?.project_type}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
                   </div>
                 </div>
@@ -164,7 +164,7 @@ const SingleProject = () => {
             {project?.thumbnail3 && (
               <div className='content-center pl-6 md:pl-36 lg:pl-52'>
                 <Image 
-                  src={API_URL+project.thumbnail3} 
+                  src={`${API_URL}/${project.thumbnail2}`} 
                   alt='image3'
                   width={318}
                   height={307}
@@ -174,7 +174,7 @@ const SingleProject = () => {
             {project?.thumbnail2 && (
               <div>
                 <Image 
-                  src={API_URL+project.thumbnail2} 
+                  src={`${API_URL}/${project.thumbnail3}`} 
                   alt='image2'
                   width={562}
                   height={714}
@@ -287,7 +287,7 @@ const SingleProject = () => {
                 onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
                 watchSlidesProgress={true}
                 grabCursor={true}
-                effect="fade"
+                  effect="fade"
                 fadeEffect={{
                   crossFade: true
                 }}

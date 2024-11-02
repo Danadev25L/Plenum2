@@ -1,8 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import image3 from "@/public/news3.jpg"
-import { useParams } from 'next/navigation';
+ import { useParams } from 'next/navigation';
 import NewsPageWithSuspense from '../NewsContent';
 
 const SingleNews = () => {
@@ -16,7 +15,7 @@ const SingleNews = () => {
       try {
         const response = await fetch(`${API_URL}/api/news/${params.newsID}`);
         const data = await response.json();
-        setNews(data);
+        setNews(data.data);
       } catch (error) {
         console.error('Error fetching news:', error);
       } finally {
@@ -54,7 +53,7 @@ const SingleNews = () => {
 
           
           <Image
-            src={API_URL+"//"+news.thumbnail1}
+            src={`${API_URL}${news.thumbnail1}`}
             alt="News image"
             width={665}
             height={600}
@@ -71,14 +70,14 @@ const SingleNews = () => {
           
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Image
-              src={API_URL+"//"+news.thumbnail2}
+              src={`${API_URL}${news.thumbnail2}`}
               alt="News image"
               width={322}
               height={375}
               className="w-full sm:w-auto h-auto"
             />
             <Image
-              src={image3}
+              src={`${API_URL}${news.thumbnail3}`}
               alt="News image"
               width={322}
               height={375}

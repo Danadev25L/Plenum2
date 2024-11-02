@@ -3,10 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import { HiArrowRight } from "react-icons/hi2"; 
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
-import image10 from "@/public/spain+5 1.png";
-import image11 from "@/public/spain+5 2.png";
-import Link from "next/link";
+ import Link from "next/link";
 import { useInView } from "react-intersection-observer";
+ 
+
+ 
 
 const NewsSection = () => {
 
@@ -14,7 +15,8 @@ const NewsSection = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.1 });
   const [isHovered, setIsHovered] = useState(false);
-  const cursorRef = useRef<HTMLDivElement | null>(null);
+  const cursorRef = useRef(null);
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
     if (inView) {
@@ -28,7 +30,7 @@ const NewsSection = () => {
   };
 
   // Function to handle mouse movement for the custom cursor
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e) => {
     const cursor = cursorRef.current;
     if (cursor) {
       cursor.style.transform = `translate(${e.clientX - 50}px, ${e.clientY - 50}px)`;
@@ -37,6 +39,22 @@ const NewsSection = () => {
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/api/news`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        setNews(data.data);
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      }  
+    };
+
+    fetchNews();
+  }, []);
 
   return (
     <div 
@@ -78,9 +96,9 @@ const NewsSection = () => {
         animate={controls}
         variants={textAnimation}
       >
-        {[image10, image11].map((image, index) => (
+        {news.slice(0, 2).map((newsItem) => (
           <div 
-            key={index} 
+            key={newsItem.id} 
             className="item flex flex-col sm:flex-row lg:w-1/2 mb-8 lg:mb-0 cursor-none"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -89,7 +107,7 @@ const NewsSection = () => {
             <div className="sm:w-2/5 lg:w-2/5 mb-4 sm:mb-0 sm:mr-4">
               <div className="min-w-[252px] min-h-[252px] sm:h-full relative">
                 <Image 
-                  src={image} 
+                  src={newsItem.thumbnail1} 
                   alt="news image" 
                   layout="fill"
                   objectFit="cover"
@@ -99,7 +117,7 @@ const NewsSection = () => {
             <div className="texts flex flex-col justify-between flex-grow">
               <div className="flex items-start justify-between mb-4">
                 <h1 className="font-mansory text-white text-md md:text-lg pr-4">
-                  VISIT OF MR. JUAN JOSÉ ESCOBAR STEMMANN (AMBASSADOR OF SPAIN IN IRAQ) TO OUR SHOWROOM
+                  {newsItem.title}
                 </h1>
                 <span className="cursor-pointer flex-shrink-0">
                   <HiArrowRight size={20} color="gray" />

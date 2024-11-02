@@ -1,23 +1,16 @@
 'use client';
 
 import React, { useEffect, useState, Suspense, useRef } from 'react';
-import Image from 'next/image';
+ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { HiArrowRight } from 'react-icons/hi';
 
-interface Project {
-  id: number;
-  title: string;
-  thumbnail1: string;
-  description1: string;
-}
 
-const API_URL = 'http://localhost:8000';
+// const API_URL = 'http://localhost:8000';
 
 const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const cursorRef = useRef<HTMLDivElement | null>(null);
@@ -45,6 +38,19 @@ const Projects = () => {
     }
   }, [controls, inView]);
 
+
+  interface Project {
+    id: number;
+    title: string;
+    short_description: string;
+    thumbnail1: string;
+    // Add any other properties your project data includes
+  }
+
+  const [projects, setProjects] = useState<Project[]>([]);
+
+
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -53,7 +59,7 @@ const Projects = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setProjects(data);
+        setProjects(data.data);
       } catch (error) {
         console.error('Error fetching projects:', error);
       } finally {
@@ -102,27 +108,27 @@ const Projects = () => {
         <h1 className="text-5xl md:text-6xl font-mansory mb-4">PROJECTS</h1>
         <p className="text-xl mb-14 md:mb-28">({projects.length}) PROJECTS</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-y-14 md:gap-x-3 md:gap-y-14 lg:gap-x-0 lg:gap-y-28 justify-items-center">
-          {projects.map((project) => (
+          {projects.map(({ id, title, short_description, thumbnail1 })=> (
             <Link 
-              href={`/projects/${project.id}`} 
-              key={project.id} 
+              href={`/projects/${id}`} 
+              key={id} 
               className="group  cursor-none"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <div className="relative overflow-hidden cursor-none">
                 <Image
-                  src={`${API_URL}${project.thumbnail1}`}
-                  alt={project.title}
+                  src={thumbnail1 || '/default-placeholder.jpg'}
+                  alt={title}
                   width={480}
                   height={300}
                   className="md:max-w-[372px] md:max-h-[228px] lg:max-w-[480px] lg:max-h-[290px]  object-cover transition-transform duration-500 group-hover:scale-100"
                 />
               </div>
               <div className="mt-4 space-y-2 cursor-none">
-                <h3 className="text-xl font-mansory uppercase">{project.title}</h3>
+                <h3 className="text-xl font-mansory uppercase">{title}</h3>
                 <div className='flex justify-between'>
-                <p className="text-sm text-gray-300">{"Plenum offers a range of services dedicated to kitchen designers and kitchen studios, with the aim of providing innovative, top-quality design solutions."}</p>
+                <p className="text-sm text-gray-300">{short_description}</p>
                    <span className="content-end pr-3">
                       <HiArrowRight size={21} color='gray' />
                     </span>

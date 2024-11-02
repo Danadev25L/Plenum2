@@ -34,7 +34,7 @@ const NewsPage = ({
         const response = await fetch(`${API_URL}/api/news`);
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
-        setNews(data);
+        setNews(data.data);
       } catch (error) {
         console.error('Error fetching news:', error);
       } finally {
@@ -115,7 +115,7 @@ const NewsPage = ({
                     transition={{ duration: 0.3 }}
                   >
                     <Image 
-                      src={`${API_URL}${item.thumbnail1}`} 
+                      src={`${API_URL}/${item.thumbnail1}`} 
                       alt="news image" 
                       width={300} 
                       height={400} 
@@ -132,7 +132,7 @@ const NewsPage = ({
                     <div className="flex flex-col">
                       <div className="flex text-start gap-2 items-center">
                         <span className="rounded-xl bg-gray-500 px-2 text-xs md:text-md">NEWS</span>
-                        <span className="text-xs md:text-md">{item.month + " " + item.year}</span>
+                        <span className="text-xs md:text-md">{item.date}</span>
                       </div>
                       <hr className="border-gray-500 my-2" />
                     </div>

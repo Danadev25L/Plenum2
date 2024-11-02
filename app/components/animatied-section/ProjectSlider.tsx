@@ -1,55 +1,28 @@
 import { useState, useRef, useEffect } from 'react';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import Image, { StaticImageData } from 'next/image';
-import image7 from "@/public/mini+slava+site+1 1.png";
-import image8 from "@/public/american+embassy+2 1.png";
-import image9 from "@/public/1-2 1.png";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface Project {
+  id: number;
   title: string;
   description: string;
+  thumbnail1: string;
   image: StaticImageData;
 }
 
-const projects: Project[] = [
-  {
-    title: 'Mini Salava Facades',
-    description: 'Plenum offers a range of services dedicated to kitchen designers and kitchen studios...',
-    image: image7,
-  },
-  {
-    title: 'American Consulate',
-    description: 'Service for stonemasons to make a kitchen worktop, a bathroom vanity top, or a table top...',
-    image: image8,
-  },
-  {
-    title: 'Spanish Village',
-    description: 'In the construction and interior design industry, finding innovative and reliable surface...',
-    image: image9,
-  },
-  {
-    title: 'Erbil Village',
-    description: 'In the construction and interior design industry, finding innovative and reliable surface...',
-    image: image7,
-  },
-  {
-    title: 'Erbil Village',
-    description: 'In the construction and interior design industry, finding innovative and reliable surface...',
-    image: image9,
-  },
-];
+
 
 const ProjectSlider = () => {
   const [isVisible, setIsVisible] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const cursorRef = useRef<HTMLDivElement | null>(null);
-  
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [projects, setProjects] = useState<Project[]>([]);
+ // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
+   useEffect(() => {
     const interval = setInterval(() => {
       handleScrollRight();
     }, 4000); // Slowed down interval for sliding
@@ -112,6 +85,24 @@ const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/projects');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProjects(data.data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+
   return (
 
     <motion.div
@@ -120,7 +111,7 @@ const [isHovered, setIsHovered] = useState(false);
     variants={animation}
   >
     <div 
-      className={`text-white pt-40 md:pt-64 px-6 md:px-16 lg:px-24 transition-all duration-1000 ease-out ${
+      className={`text-white pt-32 md:pt-14 lg:pt-72  px-6 md:px-16 lg:px-24 transition-all duration-1000 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
       }`}
       onMouseMove={handleMouseMove}
@@ -145,7 +136,7 @@ const [isHovered, setIsHovered] = useState(false);
           onMouseLeave={handleMouseLeave}
         >
           {projects.map((project, index) => (
-            <Link href={"projects"} key={index}>
+            <Link href={"projects/"+project.id} key={index}>
               <div
                 className="group cursor-pointer overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 min-w-[300px] lg:min-w-[400px]"
               >
@@ -153,13 +144,13 @@ const [isHovered, setIsHovered] = useState(false);
                   <Image
                   width={500}
                   height={300}
-                    src={project.image}
+                    src={project.thumbnail1}
                     alt={project.title}
                     className="max-w-[390px] max-h-[293px] object-cover transition-transform duration-500 hover:scale-105"
                     layout="responsive"
                   />
                 </div>
-                <div className="text-left py-6">
+                <div className="text-left py-6 max-w-[390px]">
                   <h2 className="text-3xl font-mansory uppercase mb-4">{project.title}</h2>
                   <p className="text-white">{project.description}</p>
                 </div>

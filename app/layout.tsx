@@ -31,7 +31,7 @@ import "@/app/gallery.css";
 import Footer from "./components/Footer";
 import SmoothScrollProvider from "./components/SmoothScrollProvider";
 import Navbar from "./components/Navbar";
-
+ 
 export default function RootLayout({
   children,
 }: {
@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SmoothScrollProvider>
-          <div className="flex flex-col min-h-screen">
+           <div className="flex flex-col min-h-screen">
             <div className="absolute top-0 left-0 right-0 z-50">
               <Navbar />
             </div>
@@ -52,7 +52,7 @@ export default function RootLayout({
             {/* Footer with parallax effect */}
             <Footer />
           </div>
-        </SmoothScrollProvider>
+         </SmoothScrollProvider>
       </body>
     </html>
   );

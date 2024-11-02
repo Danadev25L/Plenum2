@@ -35,7 +35,7 @@
     ".next/types/**/*.ts",
     "app/hooks/useSmoothScroll.js",
     "app/news/page.jsx"
-  ],
+, "app/components/Footer.jsx", "app/components/animatied-section/News.jsx"  ],
   "exclude": [
     "node_modules"
   ]
