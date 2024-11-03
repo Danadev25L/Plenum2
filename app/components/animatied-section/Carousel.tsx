@@ -3,30 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { motion, useInView } from 'framer-motion';
-import image1 from "@/public/imageLL.png";
-import image2 from "@/public/imageD.png";
-import image3 from "@/public/imageD2.png";
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Swiper as SwiperType } from 'swiper';
-
-const slides = [
-  {
-    title: 'Wall Tiles',
-    image: image2,
-    link: "2",
-  },
-  {
-    title: 'Floor Tiles',
-    image: image1,
-    link: "1",
-  },
-  {
-    title: 'Roof Tiles',
-    image: image3,
-    link: "3",
-  },
-];
 
 const Carousel: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -34,9 +13,15 @@ const Carousel: React.FC = () => {
   const buttonRefs = useRef<HTMLButtonElement[]>([]);
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [tiles, setTiles] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: '-50px' });
+
+  interface Tile {
+    id: string | number;
+    name: string;
+    image_url: string;
+  }
+  const [tiles, setTiles] = useState<Tile[]>([]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -127,7 +112,7 @@ const Carousel: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
         className="flex justify-center py-2  space-x-6 mb-16 md:mb-24 lg:mb-28 overflow-x-auto scrollbar-hide"
       >
-        {tiles.map((slide: any, index: any) => (
+        {tiles.map((slide: Tile, index: number) => (
           <button
             key={index}
             ref={(el) => {
@@ -166,7 +151,7 @@ const Carousel: React.FC = () => {
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           className="frames__slider"
         >
-          {tiles.map((slide: any, index) => (
+          {tiles.map((slide: Tile, index: number) => (
             <SwiperSlide key={index}>
               <Link href={"tiles/" + slide.id} className="block">
                 <div

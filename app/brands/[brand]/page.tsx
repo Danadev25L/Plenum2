@@ -1,28 +1,31 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import FloorTilesGalleryWithSuspense from '@/app/tiles/[tile]/page';
 import { useParams } from 'next/navigation'
 
+interface CategoryImage {
+  image_url: string;
+}
+
+interface CategoryData {
+  category_name: string;
+  images: CategoryImage[];
+}
+
+interface Brand {
+  name: string;
+  main_image_url: string;
+  logo_url: string;
+  title: string;
+  short_description: string;
+  description_image_url: string;
+  long_description: string;
+  images_by_category: CategoryData[];
+}
+
 const RocaPromo = () => {
-
-  const params = useParams()
-
-
-  interface Brand {
-    name: string;
-    main_image_url: string;
-    logo_url: string;
-    title: string;
-    short_description: string;
-    description_image_url: string;
-    long_description: string;
-    images_by_category: any;
-  }
-
+  const params = useParams();
   const [brands, setBrands] = useState<Brand>({} as Brand);
-
-
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -36,11 +39,8 @@ const RocaPromo = () => {
       }
     };
 
-
     fetchBrands();
   }, [params.brand]);
-
-
 
   return (
     <div className="bg-black text-white min-h-screen pt-40">
@@ -72,39 +72,42 @@ const RocaPromo = () => {
         )}
       </div>
 
-
       {/* Main Content Section */}
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
         {/* Title and Description */}
-        <div className="mt-28   space-y-6 lg:space-y-10 md:text-center text-left">
+        <div className="mt-28 space-y-6 lg:space-y-10 md:text-center text-left">
           <h2 className="text-lg md:text-xl lg:text-3xl font-mansory max-w-xl mx-auto text-left">
             {brands.title}
           </h2>
-          <p className="text-gray-300 text-sm lg:text-base max-w-xl md:mx-auto text-left">{brands.short_description}</p>
+          <p className="text-gray-300 text-sm lg:text-base max-w-xl md:mx-auto text-left">
+            {brands.short_description}
+          </p>
         </div>
 
         {/* New Image Placeholder */}
         <div className="mt-12 md:flex md:justify-center">
-          <div className="w-full md:w-[800px] h-max ">
+          <div className="w-full md:w-[800px] h-max">
             {brands.description_image_url && (
               <Image
                 width={1000}
                 height={600}
-                src={brands.description_image_url} alt={'main-img'} />
+                src={brands.description_image_url}
+                alt={'main-img'}
+              />
             )}
           </div>
         </div>
 
-
         {/* Bottom Description */}
         <div className="mt-10 lg:mt-20 space-y-4 md:text-center text-left pb-16">
-          <p className="text-gray-300 text-sm lg:text-base max-w-xl md:mx-auto text-left">{brands.long_description}</p>
-
+          <p className="text-gray-300 text-sm lg:text-base max-w-xl md:mx-auto text-left">
+            {brands.long_description}
+          </p>
         </div>
 
         {/* <FloorTilesGalleryWithSuspense /> */}
         <div className='pb-20'>
-          {brands?.images_by_category?.map((category: any) => (
+          {brands?.images_by_category?.map((category: CategoryData) => (
             <div key={category.category_name}>
               <h1 className='text-white text-3xl md:text-4xl lg:text-5xl font-mansory uppercase mt-14 md:mt-40 mb-10 md:mb-28 lg:mb-10'>
                 {category.category_name}
@@ -112,7 +115,7 @@ const RocaPromo = () => {
 
               <div className='w-full relative grid grid-cols-1 lg:grid-cols-3 gap-5 justify-center items-center'>
                 {/* Loop through images and render cards */}
-                {category.images.map((image: any, index: any) => (
+                {category.images.map((image: CategoryImage, index: number) => (
                   <div className="card w-full" key={index}>
                     <Image
                       width={447}
@@ -127,7 +130,6 @@ const RocaPromo = () => {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );

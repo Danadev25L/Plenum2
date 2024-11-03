@@ -1,22 +1,30 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { useParams } from 'next/navigation';
+ import { useParams } from 'next/navigation';
 
 
 const InteriorPortfolio = () => {
   const params = useParams();
 
+  interface Image {
+    image_url: string;
+    id: number;
+  }
+  
+  interface GalleryItem {
+    brand_name: string;
+    images: Image[];
+  }
+  
   interface Tile {
     brand_name: string;
-    gallery: any[]
+    gallery: GalleryItem[];
   }
-
+  
   // Update the state declaration
   const [tiles, setTiles] = useState<Tile>({
     brand_name: '',
     gallery: []
-    // Initialize other properties as needed
   });
 
 
@@ -46,7 +54,7 @@ const InteriorPortfolio = () => {
       <h1 className='text-white text-3xl md:text-4xl lg:text-5xl font-mansory uppercase mt-14 md:mt-40 mb-10 md:mb-28 lg:mb-10'>{tiles.brand_name}</h1>
 
       {/* Main Container */}
-      {tiles?.gallery?.map((item: any, index: any) => {
+      {tiles?.gallery?.map((item: GalleryItem, index: number) => {
         return (
           <React.Fragment key={index}>
             <div className='w-full flex flex-col justify-center items-center gap-4'>
