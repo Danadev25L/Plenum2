@@ -133,28 +133,28 @@ const Navbar = () => {
             <div className="flex justify-between items-center h-16">
               <div className="flex-shrink-0 flex items-center">
                 <Link href="/">
-                  {isExpanded ? (
-                    <div className="fadeIn">
-                      <Image
-                        width={105}
-                        height={60}
-                        quality={100}
-                        src={logoB}
-                        alt="logo"
-                        className="w-max h-auto transform duration-1000 fadeIn"
-                      />
-                    </div>
-                  ) : (
-                    <Image
-                      width={105}
-                      height={60}
-                      quality={100}
-                      src={logoA}
-                      alt="logo"
-                      className="w-max h-auto transform duration-1000 fadeIn"
-                    />
-                  )}
-
+                <div className="relative">
+                  <Image
+                    width={105}
+                    height={60}
+                    quality={100}
+                    src={logoA}
+                    alt="logo"
+                    className={`w-max h-auto absolute transition-opacity duration-700 ${
+                      isExpanded ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  />
+                  <Image
+                    width={105}
+                    height={60}
+                    quality={100}
+                    src={logoB}
+                    alt="logo"
+                    className={`w-max h-auto transition-opacity duration-700 ${
+                      isExpanded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                </div>
                 </Link>
               </div>
 
