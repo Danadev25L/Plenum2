@@ -1,13 +1,13 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { HiArrowRight } from "react-icons/hi2"; 
+import { HiArrowRight } from "react-icons/hi2";
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
- import Link from "next/link";
+import Link from "next/link";
 import { useInView } from "react-intersection-observer";
- 
 
- 
+
+
 
 const NewsSection = () => {
 
@@ -44,27 +44,28 @@ const NewsSection = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/news`);
+        const response = await fetch(`http://plenum.a-h-y.com/api/news`);
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
+
         setNews(data.data);
       } catch (error) {
         console.error('Error fetching news:', error);
-      }  
+      }
     };
 
     fetchNews();
   }, []);
 
   return (
-    <div 
+    <div
       className="container mx-auto flex flex-col px-4 sm:px-6 md:px-8 lg:px-20 pt-20 md:pt-36 lg:pt-52"
       onMouseMove={handleMouseMove}
     >
       {/* Custom Cursor */}
-      <div 
-        id="cursor" 
-        ref={cursorRef} 
+      <div
+        id="cursor"
+        ref={cursorRef}
         className={`fixed top-0 left-0 w-[100px] h-[100px] pointer-events-none z-50 transition-transform duration-300 rounded-full ${isHovered ? 'opacity-100 scale-1' : 'opacity-0 scale-0'}`}
         style={{ transform: 'translate(-50%, -50%)', backdropFilter: 'blur(5px)', backgroundColor: 'rgba(0, 0, 0, 0.35)' }}
       >
@@ -97,18 +98,18 @@ const NewsSection = () => {
         variants={textAnimation}
       >
         {news.slice(0, 2).map((newsItem) => (
-          <div 
-            key={newsItem.id} 
+          <div
+            key={newsItem.id}
             className="item flex flex-col sm:flex-row lg:w-1/2 mb-8 lg:mb-0 cursor-none"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={() => router.push('/news')}
-            >
+          >
             <div className="sm:w-2/5 lg:w-2/5 mb-4 sm:mb-0 sm:mr-4">
               <div className="min-w-[252px] min-h-[252px] sm:h-full relative">
-                <Image 
-                  src={newsItem.thumbnail1} 
-                  alt="news image" 
+                <Image
+                  src={newsItem.thumbnail1}
+                  alt="news image"
                   layout="fill"
                   objectFit="cover"
                 />

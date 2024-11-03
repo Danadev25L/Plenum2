@@ -95,7 +95,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/social-medias');
+        const response = await fetch('http://plenum.a-h-y.com/api/social-medias');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -126,12 +126,12 @@ const Footer = () => {
                 minimum thickness surfaces, which are used in exterior
                 architecture, interior design, and furnishings.
               </p>
-              <Image 
-                src={logo} 
-                alt="Logo" 
-                width={150} 
-                height={100} 
-                className="pt-4 sm:pt-6" 
+              <Image
+                src={logo}
+                alt="Logo"
+                width={150}
+                height={100}
+                className="pt-4 sm:pt-6"
               />
             </div>
 
@@ -163,15 +163,15 @@ const Footer = () => {
               <div className="space-y-4">
                 <h3 className="font-medium">FOLLOW</h3>
                 <ul className="space-y-1 font-extralight">
-                {social.map((media) => {
-                  return (
-                    <li key={media.id} className='cursor-pointer'
-                    onClick={() => window.open(media.link, '_blank')}
-                    >
-                      {media.name}
+                  {social.map((media) => {
+                    return (
+                      <li key={media.id} className='cursor-pointer'
+                        onClick={() => window.open(media.link, '_blank')}
+                      >
+                        {media.name}
                       </li>
-                  );
-                })}
+                    );
+                  })}
                 </ul>
               </div>
 

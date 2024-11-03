@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://plenum.a-h-y.com';
 
 const NewsPage = ({
   itemsToShow = Infinity,
@@ -62,10 +62,10 @@ const NewsPage = ({
   }
 
   return (
-    <div 
+    <div
       className="bg-black text-white"
-      style={{ 
-        paddingTop: `${paddingTop}px`, 
+      style={{
+        paddingTop: `${paddingTop}px`,
         paddingBottom: `${paddingBottom}px`
       }}
       onMouseMove={handleMouseMove}
@@ -73,9 +73,8 @@ const NewsPage = ({
       <div
         id="cursor"
         ref={cursorRef}
-        className={`fixed top-0 left-0 w-[100px] h-[100px] pointer-events-none z-50 transition-transform duration-300 rounded-full ${
-          isHovered ? 'opacity-100 scale-1' : 'opacity-0 scale-0'
-        }`}
+        className={`fixed top-0 left-0 w-[100px] h-[100px] pointer-events-none z-50 transition-transform duration-300 rounded-full ${isHovered ? 'opacity-100 scale-1' : 'opacity-0 scale-0'
+          }`}
         style={{
           transform: 'translate(-50%, -50%)',
           backdropFilter: 'blur(5px)',
@@ -103,22 +102,22 @@ const NewsPage = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
             {displayedItems.map(item => (
               <motion.div key={item.id}>
-                <Link 
-                  href={showTitle? ("news/"+String(item.id)) : String(item.id)} 
+                <Link
+                  href={showTitle ? ("news/" + String(item.id)) : String(item.id)}
                   className="flex flex-col md:flex-row p-3 cursor-none"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <motion.div 
+                  <motion.div
                     className="relative md:w-1/2"
                     whileHover={{ scale: 1.01 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Image 
-                      src={`${API_URL}/${item.thumbnail1}`} 
-                      alt="news image" 
-                      width={300} 
-                      height={400} 
+                    <Image
+                      src={`${item.thumbnail1}`}
+                      alt="news image"
+                      width={300}
+                      height={400}
                       className="object-cover cursor-none"
                     />
                   </motion.div>
@@ -147,7 +146,7 @@ const NewsPage = ({
   );
 };
 
- const NewsPageWithSuspense= (props) => {
+const NewsPageWithSuspense = (props) => {
   return (
     <Suspense fallback={<div>Loading</div>}>
       <NewsPage {...props} />

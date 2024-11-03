@@ -36,13 +36,12 @@ const Navbar = () => {
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/brands');
+        const response = await fetch('http://plenum.a-h-y.com/api/brands');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
         setLogoData(data.data);
-        console.log(data.data);
       } catch (error) {
         console.error('Error fetching projects:', error);
       } finally {
@@ -209,15 +208,15 @@ const Navbar = () => {
                   <div
                     key={brand.name}
                     id="brands"
-                    className="flex items-center justify-center px-max py-max rounded-full transition-colors duration-300"
+                    className="flex items-center justify-center px-max py-max rounded-full transition-colors duration-300 p-5"
                   >
-                    <Link href={"brands/"+brand.id}>
+                    <Link href={"brands/" + brand.id}>
                       <Image
                         src={brand.logo_url}
                         alt={brand.name}
-                        width={120}
-                        height={60}
-                        className="brand-image h-max px-6 transition-opacity duration-300"
+                        width={100}
+                        height={40}
+                        className="brand-image h-max px-6 transition-opacity duration-300 cursor-pointer"
                       />
                     </Link>
                   </div>

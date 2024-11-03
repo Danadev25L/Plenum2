@@ -7,22 +7,23 @@ const LogoSlider = () => {
   const [logos, setLogos] = useState<LogoItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-  
+
   interface LogoItem {
     logo_url: string;
     name: string;
   }
-  
+
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/brands');
+        const response = await fetch('http://plenum.a-h-y.com/api/brands');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
         setLogos(data.data);
         console.log(data.data);
+
       } catch (error) {
         console.error('Error fetching projects:', error);
       } finally {
@@ -44,11 +45,11 @@ const LogoSlider = () => {
         pauseOnHover={false}
         blurBorders={false}
         blurBorderColor={'#fff'}
-        
+
       >
         {logos.map((item, index) => (
           <Slider.Slide key={index}>
-            <Image 
+            <Image
               src={item.logo_url} // Adjust this based on your API response structure
               alt={item.name || `Logo ${index + 1}`} // Adjust this based on your API response structure
               width={128}

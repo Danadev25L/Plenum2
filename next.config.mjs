@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'],
+    domains: ['plenum.a-h-y.com'],
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'localhost',
+        hostname: 'plenum.a-h-y.com',
         port: '8000',
         pathname: '/storage/**',
       },

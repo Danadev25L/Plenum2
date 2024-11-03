@@ -73,9 +73,9 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       setSubmitStatus({ loading: true, success: false, error: '' });
-      
+
       try {
-        const response = await fetch('http://localhost:8000/api/contact-us', {
+        const response = await fetch('http://plenum.a-h-y.com/api/contact-us', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ const ContactForm: React.FC = () => {
       <div className="bg text-white min-h-screen px-8 pt-16 flex flex-col items-center">
         <div className="w-full max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-mansory mb-8">CONTACT US</h1>
-          
+
           {/* Status Messages */}
           {submitStatus.success && (
             <div className="bg-green-500 text-white p-4 rounded mb-4">
@@ -138,13 +138,13 @@ const ContactForm: React.FC = () => {
               {submitStatus.error}
             </div>
           )}
-          
+
           <p className="mb-8 text-sm">
             Fill in the contact form and specify the context and the project you require
             support for in as much detail as possible and you will receive targeted and
             exhaustive answers to all your queries.
           </p>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>

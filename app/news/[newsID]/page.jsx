@@ -1,12 +1,12 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
- import { useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import NewsPageWithSuspense from '../NewsContent';
 
 const SingleNews = () => {
   const [news, setNews] = useState([]);
-  const API_URL = 'http://localhost:8000';
+  const API_URL = 'http://plenum.a-h-y.com';
   const [loading, setLoading] = useState(true);
   const params = useParams();
 
@@ -45,56 +45,56 @@ const SingleNews = () => {
           <h1 className="text-2xl md:text-4xl font-mansory text-center mb-4 w-full sm:w-[665px]">
             {news.title}
           </h1>
-          
-            <div className="flex flex-col items-center space-y-2">
-              <p className="text-center text-xs sm:text-sm">{news.month} {news.year}</p>
-              <span className="bg-gray-800 px-2 py-1 rounded-xl text-[10px] md:text-xs text-center">NEWS</span>
-            </div>
 
-          
+          <div className="flex flex-col items-center space-y-2">
+            <p className="text-center text-xs sm:text-sm">{news.month} {news.year}</p>
+            <span className="bg-gray-800 px-2 py-1 rounded-xl text-[10px] md:text-xs text-center">NEWS</span>
+          </div>
+
+
           <Image
-            src={`${API_URL}${news.thumbnail1}`}
+            src={`${news.thumbnail1}`}
             alt="News image"
             width={665}
             height={600}
             className="w-full h-auto"
           />
-          
+
           <h1 className="text-sm md:text-2xl uppercase text-start font-mansory">
             {news.article}
           </h1>
-          
+
           <p className="text-xs md:text-[16px] leading-normal">
             {news.description}
           </p>
-          
+
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Image
-              src={`${API_URL}${news.thumbnail2}`}
+              src={`${news.thumbnail2}`}
               alt="News image"
               width={322}
               height={375}
               className="w-full sm:w-auto h-auto"
             />
             <Image
-              src={`${API_URL}${news.thumbnail3}`}
+              src={`${news.thumbnail3}`}
               alt="News image"
               width={322}
               height={375}
               className="w-full sm:w-auto h-auto"
             />
           </div>
-          
+
           <p className="text-xs md:text-[16px] leading-normal">
             {news.description}
           </p>
         </div>
       </div>
-       {/* Related News Section */}
-       <div className='pt-36 md:pt-52'>
+      {/* Related News Section */}
+      <div className='pt-36 md:pt-52'>
         <h2 className=' text-white text-3xl md:text-5xl font-mansory uppercase px-9 '>read also</h2>
-        <NewsPageWithSuspense itemsToShow={3} showTitle={false} paddingBottom={80} paddingTop={4}/>
-        </div>
+        <NewsPageWithSuspense itemsToShow={3} showTitle={false} paddingBottom={80} paddingTop={4} />
+      </div>
     </div>
   );
 };

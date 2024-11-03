@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useEffect, useState, Suspense, useRef } from 'react';
- import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { HiArrowRight } from 'react-icons/hi';
 
 
-// const API_URL = 'http://localhost:8000';
+// const API_URL = 'http://plenum.a-h-y.com';
 
 const Projects = () => {
   const [loading, setLoading] = useState(true);
@@ -54,12 +54,14 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/projects');
+        const response = await fetch('http://plenum.a-h-y.com/api/projects');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
         setProjects(data.data);
+        console.log(data);
+
       } catch (error) {
         console.error('Error fetching projects:', error);
       } finally {
@@ -98,7 +100,7 @@ const Projects = () => {
         </div>
       </div>
 
-      <motion.div 
+      <motion.div
         className="text-white min-h-screen px-4 md:px-8 pt-16 md:pt-[120px] pb-72"
         ref={ref}
         initial="hidden"
@@ -108,10 +110,10 @@ const Projects = () => {
         <h1 className="text-5xl md:text-6xl font-mansory mb-4">PROJECTS</h1>
         <p className="text-xl mb-14 md:mb-28">({projects.length}) PROJECTS</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-y-14 md:gap-x-3 md:gap-y-14 lg:gap-x-0 lg:gap-y-28 justify-items-center">
-          {projects.map(({ id, title, short_description, thumbnail1 })=> (
-            <Link 
-              href={`/projects/${id}`} 
-              key={id} 
+          {projects.map(({ id, title, short_description, thumbnail1 }) => (
+            <Link
+              href={`/projects/${id}`}
+              key={id}
               className="group  cursor-none"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -128,10 +130,10 @@ const Projects = () => {
               <div className="mt-4 space-y-2 cursor-none">
                 <h3 className="text-xl font-mansory uppercase">{title}</h3>
                 <div className='flex justify-between'>
-                <p className="text-sm text-gray-300">{short_description}</p>
-                   <span className="content-end pr-3">
-                      <HiArrowRight size={21} color='gray' />
-                    </span>
+                  <p className="text-sm text-gray-300">{short_description}</p>
+                  <span className="content-end pr-3">
+                    <HiArrowRight size={21} color='gray' />
+                  </span>
                 </div>
               </div>
             </Link>

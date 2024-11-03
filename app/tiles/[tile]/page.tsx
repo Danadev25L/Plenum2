@@ -5,132 +5,81 @@ import { useParams } from 'next/navigation';
 
 
 const InteriorPortfolio = () => {
- const params = useParams();
+  const params = useParams();
 
-interface Tile {
-  name: string;
-  image_url:string
-}
+  interface Tile {
+    brand_name: string;
+    gallery: any[]
+  }
 
-// Update the state declaration
-const [tiles, setTiles] = useState<Tile>({
-  name: '',
-  image_url:''
-  // Initialize other properties as needed
-});
+  // Update the state declaration
+  const [tiles, setTiles] = useState<Tile>({
+    brand_name: '',
+    gallery: []
+    // Initialize other properties as needed
+  });
 
 
-useEffect(() => {
-  const fetchTiles = async () => {
-    try {
-      const response = await fetch(`http://localhost:8000/api/tile-types/${params.tile}`);
-      if (!response.ok) throw new Error('Network response was not ok');
-      const data = await response.json();
-      setTiles(data.data);
-    } catch (error) {
-      console.error('Error fetching news:', error);
-    }  
-  };
+  useEffect(() => {
+    const fetchTiles = async () => {
+      try {
+        const response = await fetch(`http://plenum.a-h-y.com/api/tile-types/${params.tile}`);
 
-  fetchTiles();
-}, [params.tile]);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        setTiles(data.data);
+        console.log("saad = ", data);
 
-  
+
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      }
+    };
+
+    fetchTiles();
+  }, [params.tile]);
+
+
   return (
     <div className="min-h-screen bg-black px-4 py-16 sm:py-24 md:py-4 lg:py-24 md:px-6 lg:px-8">
       {/* Logo */}
-      <h1 className='text-white text-3xl md:text-4xl lg:text-5xl font-mansory uppercase mt-14 md:mt-40 mb-10 md:mb-28 lg:mb-36'>{tiles.name}</h1>
-
-      <div className="mb-8 pt-8 sm:pt-0">
-
-        <h1 className="text-white text-2xl md:text-3xl lg:text-4xl font-light ">prismacer</h1>
-      </div>
+      <h1 className='text-white text-3xl md:text-4xl lg:text-5xl font-mansory uppercase mt-14 md:mt-40 mb-10 md:mb-28 lg:mb-10'>{tiles.brand_name}</h1>
 
       {/* Main Container */}
-      <div className="flex flex-col gap-6 sm:gap-3">
-        {/* Top Row */}
-        <div className="flex flex-col md:flex-row gap-4 sm:gap-2 h-auto md:h-[700px]">
-          {/* Top Left - Large Image */}
-          <div className="relative group overflow-hidden md:flex-1 h-[300px] sm:h-[400px] md:h-full">
-            {tiles.image_url &&
-            <Image
-             width={800}
-             height={600}
-              src={tiles.image_url}
-              alt="Modern living room with lake view"
-              className="w-full h-full object-cover"
-              priority
-            /> }
-
-          </div>
-
-          {/* Top Right - Two Square Images Stack */}
-          <div className="flex flex-col gap-4 sm:gap-2 h-auto md:h-full">
-            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
-              {tiles.image_url &&
-              <Image
-              width={800}
-              height={600}            
-               src={tiles.image_url}
-               alt="Modern kitchen design"
-               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
-             /> }
-              
+      {tiles?.gallery?.map((item: any, index: any) => {
+        return (
+          <React.Fragment key={index}>
+            <div className='w-full flex flex-col justify-center items-center gap-4'>
+              <h1 className='text-white text-xl md:text-2xl lg:text-3xl font-mansory uppercase mt-14 md:mt-40 mb-10 md:mb-28 lg:mb-10 w-full text-start'>{item?.brand_name}</h1>
+              {/* Left */}
+              {item?.images.length >= 3 && (
+                <div className="relative w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
+                  <div className='col-span-1 lg:col-span-2'>
+                    <img src={item?.images[0].image_url} alt="tile-image" className='h-auto lg:h-full w-full' />
+                  </div>
+                  <div className='flex flex-col justify-center items-center gap-4'>
+                    <img src={item?.images[1].image_url} alt="tile-image" className='w-full' />
+                    <img src={item?.images[2].image_url} alt="tile-image" className='w-full' />
+                  </div>
+                </div>
+              )}
+              {/* Right */}
+              {item?.images.length > 3 && item?.images.length <= 6 && (
+                <div className="relative w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
+                  <div className='flex flex-col justify-center items-center gap-4'>
+                    <img src={item?.images[3].image_url} alt="tile-image" className='w-full' />
+                    <img src={item?.images[4].image_url} alt="tile-image" className='w-full' />
+                  </div>
+                  <div className='col-span-1 lg:col-span-2'>
+                    <img src={item?.images[5].image_url} alt="tile-image" className='h-auto lg:h-full w-full' />
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
-            {tiles.image_url &&
-              <Image
-              width={800}
-              height={600}            
-               src={tiles.image_url}
-               alt="Modern kitchen design"
-               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
-             /> }
-            </div>
-          </div>
-        </div>
+          </React.Fragment>
+        )
+      })}
 
-        {/* Bottom Row */}
-        <div className="flex flex-col md:flex-row gap-4 sm:gap-2 h-auto md:h-[700px]">
-          {/* Bottom Left - Two Square Images Side by Side */}
-          <div className="flex flex-col gap-4 sm:gap-2 h-auto md:h-full">
-            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
-            {tiles.image_url &&
-              <Image
-              width={800}
-              height={600}            
-               src={tiles.image_url}
-               alt="Modern kitchen design"
-               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
-             /> }
-            </div>
-            <div className="relative group overflow-hidden h-[300px] sm:h-[400px] md:h-[350px]">
-            {tiles.image_url &&
-              <Image
-              width={800}
-              height={600}            
-               src={tiles.image_url}
-               alt="Modern kitchen design"
-               className="w-full md:w-[300px] lg:w-[450px] h-full object-cover"
-             /> }
-            </div>
-          </div>
-
-          {/* Bottom Right - Large Image */}
-          <div className="relative group overflow-hidden md:flex-1 h-[300px] sm:h-[400px] md:h-full">
-            {tiles.image_url &&
-            <Image
-              src={tiles.image_url}
-              width={800}
-              height={600}
-              alt="Spacious modern room"
-              className="w-full h-full object-cover"
-            />
-            }
-
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

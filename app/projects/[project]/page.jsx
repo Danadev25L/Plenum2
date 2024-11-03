@@ -38,7 +38,7 @@ const SingleProject = () => {
     }
   }, [isGalleryOpen])
 
-  const API_URL = 'http://localhost:8000'
+  const API_URL = 'http://plenum.a-h-y.com'
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -47,7 +47,7 @@ const SingleProject = () => {
         if (!response.ok) throw new Error('Network response was not ok')
         const data = await response.json()
         setProject(data.data)
-       } catch (error) {
+      } catch (error) {
         console.error('Error fetching projects:', error)
       } finally {
         setLoading(false)
@@ -60,9 +60,9 @@ const SingleProject = () => {
   const getGalleryImages = () => {
     if (!project) return []
     const images = []
-    if (project.thumbnail1) images.push({ src: `${API_URL}/${project.thumbnail1}`, alt: 'Gallery image 1' })
-    if (project.thumbnail2) images.push({ src: `${API_URL}/${project.thumbnail2}`, alt: 'Gallery image 2' })
-    if (project.thumbnail3) images.push({ src: `${API_URL}/${project.thumbnail3}`, alt: 'Gallery image 3' })
+    if (project.thumbnail1) images.push({ src: `${project.thumbnail1}`, alt: 'Gallery image 1' })
+    if (project.thumbnail2) images.push({ src: `${project.thumbnail2}`, alt: 'Gallery image 2' })
+    if (project.thumbnail3) images.push({ src: `${project.thumbnail3}`, alt: 'Gallery image 3' })
     return images
   }
 
@@ -85,7 +85,7 @@ const SingleProject = () => {
   const galleryImages = getGalleryImages()
 
   return (
-    <div 
+    <div
       className='bg-black pt-28 pb-24 md:pb-44 lg:pb-60'
       onMouseMove={handleMouseMove}
     >
@@ -93,9 +93,8 @@ const SingleProject = () => {
       <div
         id="cursor"
         ref={cursorRef}
-        className={`fixed top-0 left-0 w-[100px] h-[100px] pointer-events-none z-50 transition-transform duration-300 rounded-full ${
-          isHovered ? 'opacity-100 scale-1' : 'opacity-0 scale-0'
-        }`}
+        className={`fixed top-0 left-0 w-[100px] h-[100px] pointer-events-none z-50 transition-transform duration-300 rounded-full ${isHovered ? 'opacity-100 scale-1' : 'opacity-0 scale-0'
+          }`}
         style={{
           transform: 'translate(-50%, -50%)',
           backdropFilter: 'blur(5px)',
@@ -114,8 +113,8 @@ const SingleProject = () => {
           <h1 className="text-3xl md:text-6xl font-mansory mb-4 text-white uppercase">{project?.title}</h1>
 
           {project?.thumbnail1 && (
-            <Image 
-              src={`${API_URL}/${project.thumbnail1}`}
+            <Image
+              src={`${project.thumbnail1}`}
               alt="image"
               width={1356}
               height={856}
@@ -123,7 +122,7 @@ const SingleProject = () => {
             />
           )}
         </div>
-        
+
         <div className="texts flex flex-col py-16 md:py-36 md:mb-20">
           <div className="px-4 md:px-4 lg:px-28">
             <div className="firstPart flex flex-col md:flex-row md:gap-8">
@@ -135,22 +134,22 @@ const SingleProject = () => {
                   {project?.short_description}
                 </p>
               </div>
-              
+
               <div className="bg-black text-white p-8 font-sans mt-16 md:mt-32 lg:mt-48 md:w-1/2">
                 <div className="max-w-2xl mx-auto">
                   <div className="grid grid-cols-2 gap-y-6 text-lg font-mansory">
                     <div className="uppercase">Location</div>
                     <div className="text-right capitalize">{project?.project_locatio}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
-                    
+
                     <div className="uppercase">Year</div>
                     <div className="text-right capitalize">{project?.date}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
-                    
+
                     <div className="uppercase">Applications</div>
                     <div className="text-right capitalize">{project?.project_category}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
-                    
+
                     <div className="uppercase">Project Type</div>
                     <div className="text-right capitalize">{project?.project_type}</div>
                     <hr className="col-span-2 border-t border-gray-500" />
@@ -163,8 +162,8 @@ const SingleProject = () => {
           <div className='flex justify-between gap-4 md:gap-14 pb-24 pt-24 md:pt-44 lg:pt-52'>
             {project?.thumbnail3 && (
               <div className='content-center pl-6 md:pl-36 lg:pl-52'>
-                <Image 
-                  src={`${API_URL}/${project.thumbnail2}`} 
+                <Image
+                  src={`${project.thumbnail2}`}
                   alt='image3'
                   width={318}
                   height={307}
@@ -173,8 +172,8 @@ const SingleProject = () => {
             )}
             {project?.thumbnail2 && (
               <div>
-                <Image 
-                  src={`${API_URL}/${project.thumbnail3}`} 
+                <Image
+                  src={`${project.thumbnail3}`}
                   alt='image2'
                   width={562}
                   height={714}
@@ -202,15 +201,15 @@ const SingleProject = () => {
           <div className="flex items-center justify-between mb-8 md:mb-24">
             <h2 className="text-2xl md:text-5xl lg:text-6xl font-mansory mx-auto text-white">GALLERY</h2>
           </div>
-          
+
           <div className="flex gap-5 relative px-4 md:px-8">
             {galleryImages[0] && (
-              <div 
+              <div
                 className="flex-[2] relative cursor-none"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <Image 
+                <Image
                   src={galleryImages[0].src}
                   alt={galleryImages[0].alt}
                   width={890}
@@ -220,14 +219,14 @@ const SingleProject = () => {
                 />
               </div>
             )}
-            
+
             {galleryImages[1] && (
-              <div 
+              <div
                 className="flex-1 relative cursor-none"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <Image 
+                <Image
                   src={galleryImages[1].src}
                   alt={galleryImages[1].alt}
                   width={445}
@@ -239,11 +238,11 @@ const SingleProject = () => {
             )}
 
             <div className="flex flex-col items-center content-center">
-              <div 
+              <div
                 className="relative inline-block cursor-pointer"
                 onClick={() => setIsGalleryOpen(true)}
               >
-                <Image src={icon1} alt="bg-logo" className="max-w-10 md:max-w-[90px]"/>
+                <Image src={icon1} alt="bg-logo" className="max-w-10 md:max-w-[90px]" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image src={icon2} alt="overlay-icon" className="max-w-4 md:max-w-[35px] z-10" />
                 </div>
@@ -260,11 +259,11 @@ const SingleProject = () => {
       {isGalleryOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           {/* Backdrop */}
-          <div 
+          <div
             className="absolute inset-0 bg-black"
             onClick={() => setIsGalleryOpen(false)}
           />
-          
+
           {/* Modal content */}
           <div className="relative z-10 w-full h-full max-h-screen flex items-center justify-center px-4">
             {/* Close button */}
@@ -287,7 +286,7 @@ const SingleProject = () => {
                 onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
                 watchSlidesProgress={true}
                 grabCursor={true}
-                  effect="fade"
+                effect="fade"
                 fadeEffect={{
                   crossFade: true
                 }}
@@ -306,7 +305,7 @@ const SingleProject = () => {
                   </SwiperSlide>
                 ))}
               </Swiper>
-    
+
               {/* Gallery counter */}
               <div className="absolute bottom-8 right-8 text-white px-4 py-2 rounded-full">
                 {currentSlide}/{galleryImages.length}
